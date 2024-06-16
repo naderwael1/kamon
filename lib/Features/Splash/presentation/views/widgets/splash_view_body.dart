@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kamon/home/presentation/views/home_view.dart';
+import 'package:kamon/Features/home/presentation/views/home_view.dart';
 import 'dart:async'; // Import dart:async for Future
 
 class SplashViewbody extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 116), () {
+    Future.delayed(const Duration(seconds: 7), () {
       Get.to(() => const HomeView(), transition: Transition.fade);
     });
   }

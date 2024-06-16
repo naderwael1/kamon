@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kamon/home/presentation/views/widgets/new_login_screen.dart';
+import 'package:kamon/Features/home/presentation/views/widgets/new_login_screen.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({Key? key}) : super(key: key);
