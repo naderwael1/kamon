@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/home/presentation/views/home_view.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 import '../../../constant.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +29,7 @@ class LoginScreen extends StatelessWidget {
             ClipPath(
               clipper: BaseClipper(),
               child: Container(
-                height: 150,
+                height: 250,
                 color: KPrimaryColor,
                 child: Center(
                   child: Padding(
@@ -30,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                       style: GoogleFonts.lato(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: KSecondaryColor,
                       ),
                     ),
                   ),
@@ -42,53 +51,84 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Text(
-                    'Welcome',
-                    style: GoogleFonts.lato(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: KPrimaryColor,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      child: Text(
+                        'Welcome',
+                        style: GoogleFonts.lato(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: KPrimaryColor,
+                          // Replace with KPrimaryColor if defined
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8.0),
-                  Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
-                      fontSize: 16,
-                      color: Colors.grey[700],
+                  const SizedBox(height: 32.0),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      child: Text(
+                        'Email or your phone number',
+                        style: GoogleFonts.lato(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: KPrimaryColor,
+                          // Replace with KPrimaryColor if defined
+                        ),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 32.0),
+                  const SizedBox(height: 8),
+                  // Optional space between the label and the TextFormField
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Email or Mobile Number',
                       hintText: 'example@example.com',
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(15.0),
                       ),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: const Color(0xffDAE4E0),
                     ),
                   ),
                   const SizedBox(height: 16.0),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: '********',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.visibility),
-                        onPressed: () {
-                          // Handle visibility toggle
-                        },
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      child: Text(
+                        'Password',
+                        style: GoogleFonts.lato(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: KPrimaryColor,
+                          // Replace with KPrimaryColor if defined
+                        ),
                       ),
                     ),
-                    obscureText: true,
+                  ),
+                  TextFormField(
+                    obscureText: _obscureText,
+                    decoration: InputDecoration(
+                      hintText: '********',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffDAE4E0),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _togglePasswordVisibility,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 8.0),
                   Align(
@@ -97,7 +137,13 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {
                         // Handle forget password
                       },
-                      child: const Text('Forget Password'),
+                      child: Text(
+                        'Forget Password',
+                        style: GoogleFonts.lato(
+                          color: KPrimaryColor,
+                          fontSize: 14,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 32.0),
@@ -115,7 +161,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AppLayoutScreen()),
+                              builder: (context) => AppLayoutScreen()),
                         );
                       },
                       child: Text(
@@ -128,11 +174,56 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 16.0),
+                  GestureDetector(
+                    onTap: () {
+                      // Navigate to Sign In screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInScreen()),
+                      );
+                    },
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Are you new? ',
+                            style: GoogleFonts.lato(
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'Sign In',
+                            style: GoogleFonts.lato(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: KPrimaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SignInScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sign In'),
+      ),
+      body: const Center(
+        child: Text('Sign In Screen'),
       ),
     );
   }

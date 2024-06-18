@@ -20,7 +20,7 @@ class AppRoutes {
       case Routes.appLayoutRoute:
         return MaterialPageRoute(
           builder: (context) {
-            return const LoginScreen();
+            return LoginScreen();
           },
           settings: const RouteSettings(name: Routes.appLayoutRoute),
         );
