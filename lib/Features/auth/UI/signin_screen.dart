@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/auth/UI/login_screen.dart';
@@ -22,7 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF0EAD6),
+      backgroundColor: KSecondaryColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -54,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Full name',
                         style: GoogleFonts.lato(
@@ -75,11 +76,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       fillColor: const Color(0xffDAE4E0),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 8.0),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Password',
                         style: GoogleFonts.lato(
@@ -109,11 +110,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 8.0),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Email',
                         style: GoogleFonts.lato(
@@ -134,11 +135,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       fillColor: const Color(0xffDAE4E0),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 8.0),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Mobile Number',
                         style: GoogleFonts.lato(
@@ -150,6 +151,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     decoration: InputDecoration(
                       hintText: '+ 123 456 789',
                       border: OutlineInputBorder(
@@ -159,11 +164,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       fillColor: const Color(0xffDAE4E0),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 8.0),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Date of birth',
                         style: GoogleFonts.lato(
@@ -184,9 +189,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       fillColor: const Color(0xffDAE4E0),
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 8.0),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       'By continuing, you agree to Terms of Use and Privacy Policy.',
                       style: GoogleFonts.lato(
@@ -197,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 8.0),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
