@@ -17,22 +17,20 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              child: ClipPath(
-                clipper: BaseClipper(),
-                child: Container(
-                  height: 150,
-                  color: const Color(0xFF1B5E20),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 50.0),
-                      child: Text(
-                        'Log In',
-                        style: GoogleFonts.lato(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+            ClipPath(
+              clipper: BaseClipper(),
+              child: Container(
+                height: 150,
+                color: KPrimaryColor,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 50.0),
+                    child: Text(
+                      'Log In',
+                      style: GoogleFonts.lato(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -49,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                     style: GoogleFonts.lato(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF1B5E20),
+                      color: KPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 8.0),
