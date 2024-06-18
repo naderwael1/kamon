@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
-import 'package:kamon/Features/auth/UI/signin_screen.dart';
-import 'package:kamon/Features/home/presentation/views/home_view.dart';
+import 'package:kamon/Features/auth/UI/login_screen.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 import '../../../constant.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool _obscureText = true;
 
   void _togglePasswordVisibility() {
@@ -36,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 50.0),
                     child: Text(
-                      'Log In',
+                      'Sign Up',
                       style: GoogleFonts.lato(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -55,37 +54,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        'Welcome',
-                        style: GoogleFonts.lato(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
-                          // Replace with KPrimaryColor if defined
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8.0),
-                  const SizedBox(height: 32.0),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0), // Optional padding
-                      child: Text(
-                        'Email or your phone number',
+                        'Full name',
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
-                          // Replace with KPrimaryColor if defined
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  // Optional space between the label and the TextFormField
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: 'example@example.com',
@@ -100,14 +79,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      padding: const EdgeInsets.all(16.0),
                       child: Text(
                         'Password',
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
-                          // Replace with KPrimaryColor if defined
                         ),
                       ),
                     ),
@@ -131,23 +109,95 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 16.0),
                   Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        // Handle forget password
-                      },
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        'Forget Password',
+                        'Email',
                         style: GoogleFonts.lato(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
-                          fontSize: 14,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32.0),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'example@example.com',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffDAE4E0),
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Mobile Number',
+                        style: GoogleFonts.lato(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: KPrimaryColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: '+ 123 456 789',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffDAE4E0),
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Date of birth',
+                        style: GoogleFonts.lato(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: KPrimaryColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'DD / MM / YYYY',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffDAE4E0),
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'By continuing, you agree to Terms of Use and Privacy Policy.',
+                      style: GoogleFonts.lato(
+                        fontSize: 14,
+                        color: Colors.black,
+                        decoration: TextDecoration.underline,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -166,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       child: Text(
-                        'Log In',
+                        'Sign Up',
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -178,24 +228,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 16.0),
                   GestureDetector(
                     onTap: () {
-                      // Navigate to Sign In screen
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignUpScreen()),
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
                       );
                     },
                     child: RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: 'Are you new? ',
+                            text: 'Already have an account? ',
                             style: GoogleFonts.lato(
                               fontSize: 14,
                               color: Colors.black,
                             ),
                           ),
                           TextSpan(
-                            text: 'Sign In',
+                            text: 'Log in',
                             style: GoogleFonts.lato(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -211,20 +260,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SignInScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign In'),
-      ),
-      body: const Center(
-        child: Text('Sign In Screen'),
       ),
     );
   }
