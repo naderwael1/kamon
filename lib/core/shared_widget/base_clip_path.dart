@@ -4,14 +4,36 @@ class BaseClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-    path.lineTo(0, size.height - 20);
+    path.lineTo(0, size.height);
+    final firstCurve = Offset(0, size.height - 20);
+    final lastCurve = Offset(30, size.height - 20);
     path.quadraticBezierTo(
-        size.width / 10, size.height - 50, size.width / 5, size.height - 50);
-    path.lineTo(size.width * 4 / 5, size.height - 50);
+      firstCurve.dx,
+      firstCurve.dy,
+      lastCurve.dx,
+      lastCurve.dy,
+    );
+    final secondfirstCurve = Offset(0, size.height - 20);
+    final secondlastCurve = Offset(size.width - 30, size.height - 20);
     path.quadraticBezierTo(
-        size.width * 9 / 10, size.height - 50, size.width, size.height - 20);
+      secondfirstCurve.dx,
+      secondfirstCurve.dy,
+      secondlastCurve.dx,
+      secondlastCurve.dy,
+    );
+
+    final thirdfirstCurve = Offset(size.width, size.height - 20);
+    final thirdlastCurve = Offset(size.width, size.height);
+    path.quadraticBezierTo(
+      thirdfirstCurve.dx,
+      thirdfirstCurve.dy,
+      thirdlastCurve.dx,
+      thirdlastCurve.dy,
+    );
+
     path.lineTo(size.width, 0);
     path.close();
+
     return path;
   }
 

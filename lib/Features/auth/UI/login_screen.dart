@@ -13,20 +13,22 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ClipPath(
-              clipper: BaseClipper(),
-              child: Container(
-                height: 250,
-                color: const Color(0xFF1B5E20),
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 50.0),
-                    child: Text(
-                      'Log In',
-                      style: GoogleFonts.lato(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+            Container(
+              child: ClipPath(
+                clipper: BaseClipper(),
+                child: Container(
+                  height: 150,
+                  color: const Color(0xFF1B5E20),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 50.0),
+                      child: Text(
+                        'Log In',
+                        style: GoogleFonts.lato(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
