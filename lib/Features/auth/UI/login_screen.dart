@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
+import 'package:kamon/Features/home/presentation/views/home_view.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 import '../../../constant.dart';
 
@@ -110,7 +114,11 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        // Handle log in
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AppLayoutScreen()),
+                        );
                       },
                       child: Text(
                         'Log In',
