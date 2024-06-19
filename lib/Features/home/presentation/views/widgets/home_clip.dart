@@ -9,7 +9,7 @@ class HomeClip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230, // Adjusted height to fit content
+      height: 190, // Adjusted height to fit content
       color: KPrimaryColor,
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -97,7 +97,7 @@ class HomeClip extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 32.0),
+            const SizedBox(height: 20.0),
             Text(
               'Good Morning',
               style: KPrimaryFont(

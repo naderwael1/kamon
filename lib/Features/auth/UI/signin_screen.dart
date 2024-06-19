@@ -30,7 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ClipPath(
               clipper: BaseClipper(),
               child: Container(
-                height: 250,
+                height: 190,
                 color: KPrimaryColor,
                 child: Center(
                   child: Padding(

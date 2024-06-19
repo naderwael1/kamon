@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:kamon/constant.dart';
-import 'package:kamon/core/shared_widget/flutterfont.dart';
 import 'package:kamon/custom_icons.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {

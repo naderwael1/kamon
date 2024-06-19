@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/home/presentation/views/widgets/best_saller_list_view';
 import 'package:kamon/Features/home/presentation/views/widgets/home_clip.dart';
-import 'package:kamon/constant.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 class HomeView extends StatelessWidget {

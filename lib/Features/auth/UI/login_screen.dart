@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ClipPath(
               clipper: BaseClipper(),
               child: Container(
-                height: 250,
+                height: 150,
                 color: KPrimaryColor,
                 child: Center(
                   child: Padding(
