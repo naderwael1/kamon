@@ -36,8 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 50.0),
                     child: Text(
-                      'Sign Up',
-                      style: GoogleFonts.lato(
+                      'Create new account',
+                      style: KPrimaryFont(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: KSecondaryColor,
@@ -58,7 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Full name',
-                        style: GoogleFonts.lato(
+                        style: KSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Password',
-                        style: GoogleFonts.lato(
+                        style: KSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
@@ -117,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Email',
-                        style: GoogleFonts.lato(
+                        style: KSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
@@ -142,7 +142,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Mobile Number',
-                        style: GoogleFonts.lato(
+                        style: KSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
@@ -156,7 +156,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       FilteringTextInputFormatter.digitsOnly
                     ],
                     decoration: InputDecoration(
-                      hintText: '+ 123 456 789',
+                      hintText: '+2 1140773518',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
@@ -171,7 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Date of birth',
-                        style: GoogleFonts.lato(
+                        style: KSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
@@ -194,7 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       'By continuing, you agree to Terms of Use and Privacy Policy.',
-                      style: GoogleFonts.lato(
+                      style: KPrimaryFont(
                         fontSize: 14,
                         color: Colors.black,
                         decoration: TextDecoration.underline,
@@ -222,10 +222,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       child: Text(
                         'Sign Up',
-                        style: GoogleFonts.lato(
+                        style: KPrimaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: KSecondaryColor,
                         ),
                       ),
                     ),

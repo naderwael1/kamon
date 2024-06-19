@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/auth/UI/signin_screen.dart';
-import 'package:kamon/Features/home/presentation/views/home_view.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 import '../../../constant.dart';
 
@@ -24,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KSecondaryColor,
-      //const Color(0xFFF0EAD6),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -38,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.only(top: 50.0),
                     child: Text(
                       'Log In',
-                      style: GoogleFonts.lato(
+                      style: KPrimaryFont(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: KSecondaryColor,
@@ -48,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 8.0),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -56,37 +54,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        'Welcome',
-                        style: GoogleFonts.lato(
+                        'Welcome , We are happy to see you again',
+                        style: KPrimaryFont(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
-                          // Replace with KPrimaryColor if defined
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 8.0),
-                  const SizedBox(height: 32.0),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Email or your phone number',
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
-                          // Replace with KPrimaryColor if defined
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 8),
-                  // Optional space between the label and the TextFormField
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: 'example@example.com',
@@ -101,14 +95,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0), // Optional padding
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Password',
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: KPrimaryColor,
-                          // Replace with KPrimaryColor if defined
                         ),
                       ),
                     ),
@@ -148,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32.0),
+                  const SizedBox(height: 16.0),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -179,7 +172,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 16.0),
                   GestureDetector(
                     onTap: () {
-                      // Navigate to Sign In screen
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SignUpScreen()),
@@ -212,20 +204,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SignInScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign In'),
-      ),
-      body: const Center(
-        child: Text('Sign In Screen'),
       ),
     );
   }
