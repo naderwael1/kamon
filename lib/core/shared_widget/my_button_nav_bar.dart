@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:kamon/constant.dart';
+import 'package:kamon/core/shared_widget/flutterfont.dart';
+import 'package:kamon/custom_icons.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -36,22 +38,22 @@ class MyBottomNavigationBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _buildNavItem(
-              icon: Icons.home,
+              icon: CustomIcons.vector1,
               label: 'Home',
               index: 0,
             ),
             _buildNavItem(
-              icon: Icons.search,
-              label: 'Search',
+              icon: CustomIcons.vector1_2,
+              label: 'My order',
               index: 1,
             ),
             _buildNavItem(
-              icon: Icons.dashboard_sharp,
-              label: 'Explore',
+              icon: CustomIcons.vector1_1,
+              label: 'Favorite',
               index: 2,
             ),
             _buildNavItem(
-              icon: Icons.person,
+              icon: CustomIcons.vector1_3,
               label: 'Profile',
               index: 3,
             ),
@@ -73,14 +75,18 @@ class MyBottomNavigationBar extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: currentIndex == index ? Colors.lightGreen : Colors.white,
+            color: currentIndex == index
+                ? Color.fromARGB(255, 28, 33, 22)
+                : Colors.white,
             size: 24,
           ),
           const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
-              color: currentIndex == index ? Colors.lightGreen : Colors.white,
+              color: currentIndex == index
+                  ? const Color.fromARGB(255, 17, 19, 14)
+                  : Colors.white,
               fontSize: 12,
             ),
           ),

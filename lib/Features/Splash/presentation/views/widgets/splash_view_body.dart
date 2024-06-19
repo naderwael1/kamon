@@ -25,7 +25,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Get.to(() => LoginScreen(), transition: Transition.fade);
     });
   }
