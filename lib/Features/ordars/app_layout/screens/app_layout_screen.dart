@@ -4,6 +4,7 @@ import 'package:kamon/Features/ordars/activeOrder/active_order_screen.dart';
 import 'package:kamon/Features/ordars/app_layout/controllers/app_layout_cubit.dart';
 import 'package:kamon/Features/ordars/order_clip.dart';
 import 'package:kamon/constant.dart';
+import 'package:kamon/core/shared_widget/Drawer/customDrawer.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 /// AppLayoutScreen
@@ -24,6 +25,7 @@ class OrderLayoutScreen extends StatelessWidget {
       child: BlocBuilder<AppLayoutCubit, int>(
         builder: (context, state) {
           return Scaffold(
+            drawer: const CustomDrawer(),
             body: Column(
               children: [
                 ClipPath(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/home/presentation/views/widgets/best_saller_list_view';
 import 'package:kamon/Features/home/presentation/views/widgets/home_clip.dart';
+import 'package:kamon/constant.dart';
+import 'package:kamon/core/shared_widget/Drawer/customDrawer.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 class HomeView extends StatelessWidget {
@@ -10,6 +12,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const CustomDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,8 +40,7 @@ class HomeView extends StatelessWidget {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        _buildCategoryItem(
-                            'Beverages', 'https://example.com/beverages.jpg'),
+                        _buildCategoryItem('Beverages', testImage),
                         _buildCategoryItem(
                             'Snack', 'https://example.com/snack.jpg'),
                         _buildCategoryItem(
@@ -80,18 +82,10 @@ class HomeView extends StatelessWidget {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        BestSellerCard(
-                            imageUrl: 'https://example.com/sushi.jpg',
-                            price: '103.0'),
-                        BestSellerCard(
-                            imageUrl: 'https://example.com/chicken.jpg',
-                            price: '50.0'),
-                        BestSellerCard(
-                            imageUrl: 'https://example.com/lasagna.jpg',
-                            price: '12.99'),
-                        BestSellerCard(
-                            imageUrl: 'https://example.com/cupcake.jpg',
-                            price: '8.20'),
+                        BestSellerCard(imageUrl: testImage, price: '103.0'),
+                        BestSellerCard(imageUrl: testImage, price: '50.0'),
+                        BestSellerCard(imageUrl: testImage, price: '12.99'),
+                        BestSellerCard(imageUrl: testImage, price: '8.20'),
                       ],
                     ),
                   ),

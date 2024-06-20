@@ -7,3 +7,5 @@ const KSecondaryColor = Color(0xffE1D9C3);
 const KPrimaryFont = GoogleFonts.leagueSpartan;
 const KSecondaryFont = GoogleFonts.roboto;
 const KfillColor = Color(0xffDAE4E0);
+const testImage =
+    'https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';

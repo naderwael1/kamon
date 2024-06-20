@@ -6,6 +6,24 @@ class HomeClip extends StatelessWidget {
     super.key,
   });
 
+  String _getGreetingMessage() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good Morning';
+    } else {
+      return 'Good Evening';
+    }
+  }
+
+  String _getGreetingSubMessage() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Rise And Shine! It\'s Breakfast Time';
+    } else {
+      return 'Hope You Had a Great Day!';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -99,7 +117,7 @@ class HomeClip extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             Text(
-              'Good Morning',
+              _getGreetingMessage(),
               style: KPrimaryFont(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -107,7 +125,7 @@ class HomeClip extends StatelessWidget {
               ),
             ),
             Text(
-              'Rise And Shine! It\'s Breakfast Time',
+              _getGreetingSubMessage(),
               style: KPrimaryFont(
                 fontSize: 18,
                 color: KSecondaryColor,
