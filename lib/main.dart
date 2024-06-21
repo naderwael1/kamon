@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kamon/constant.dart';
+
 import 'Features/Splash/presentation/views/splash_view.dart'; // Correct import path
 
 void main() {
@@ -8,7 +9,7 @@ void main() {
 }
 
 class Kamon extends StatelessWidget {
-  const Kamon({Key? key}) : super(key: key);
+  const Kamon({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class Kamon extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           brightness: Brightness.light, // Set your default theme here
-          scaffoldBackgroundColor: KSecondaryColor
+          scaffoldBackgroundColor: kSecondaryColor
           // Add other theme configurations if needed
           ),
       home: const SplashView(),

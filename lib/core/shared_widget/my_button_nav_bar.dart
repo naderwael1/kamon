@@ -7,16 +7,16 @@ class MyBottomNavigationBar extends StatelessWidget {
   final Function(int) onTap;
 
   const MyBottomNavigationBar({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: KPrimaryColor,
+        color: kPrimaryColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -74,7 +74,7 @@ class MyBottomNavigationBar extends StatelessWidget {
           Icon(
             icon,
             color: currentIndex == index
-                ? Color.fromARGB(255, 28, 33, 22)
+                ? const Color.fromARGB(255, 28, 33, 22)
                 : Colors.white,
             size: 24,
           ),

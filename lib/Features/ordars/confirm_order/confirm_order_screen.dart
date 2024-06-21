@@ -3,7 +3,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:kamon/Features/home/data/get_location.dart';
 
 class BranchLocator extends StatefulWidget {
+  const BranchLocator({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _BranchLocatorState createState() => _BranchLocatorState();
 }
 
@@ -56,12 +59,12 @@ class _BranchLocatorState extends State<BranchLocator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Branch Locator'),
+        title: const Text('Branch Locator'),
       ),
       body: Center(
         child: Text(
           _branchMessage,
-          style: TextStyle(fontSize: 24),
+          style: const TextStyle(fontSize: 24),
         ),
       ),
     );
@@ -69,7 +72,7 @@ class _BranchLocatorState extends State<BranchLocator> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: BranchLocator(),
   ));
 }

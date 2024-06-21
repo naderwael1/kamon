@@ -4,10 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/auth/UI/login_screen.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
+
 import '../../../constant.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
@@ -23,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KSecondaryColor,
+      backgroundColor: kSecondaryColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -31,16 +35,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               clipper: BaseClipper(),
               child: Container(
                 height: 190,
-                color: KPrimaryColor,
+                color: kPrimaryColor,
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 50.0),
                     child: Text(
                       'Create new account',
-                      style: KPrimaryFont(
+                      style: kPrimaryFont(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: KSecondaryColor,
+                        color: kSecondaryColor,
                       ),
                     ),
                   ),
@@ -58,10 +62,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Full name',
-                        style: KSecondaryFont(
+                        style: kSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -83,10 +87,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Password',
-                        style: KSecondaryFont(
+                        style: kSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -117,10 +121,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Email',
-                        style: KSecondaryFont(
+                        style: kSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -142,10 +146,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Mobile Number',
-                        style: KSecondaryFont(
+                        style: kSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -171,10 +175,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Date of birth',
-                        style: KSecondaryFont(
+                        style: kSecondaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -194,7 +198,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       'By continuing, you agree to Terms of Use and Privacy Policy.',
-                      style: KPrimaryFont(
+                      style: kPrimaryFont(
                         fontSize: 14,
                         color: Colors.black,
                         decoration: TextDecoration.underline,
@@ -208,7 +212,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 50,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: KPrimaryColor,
+                        backgroundColor: kPrimaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
@@ -217,15 +221,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AppLayoutScreen()),
+                              builder: (context) => const AppLayoutScreen()),
                         );
                       },
                       child: Text(
                         'Sign Up',
-                        style: KPrimaryFont(
+                        style: kPrimaryFont(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KSecondaryColor,
+                          color: kSecondaryColor,
                         ),
                       ),
                     ),
@@ -235,7 +239,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()),
                       );
                     },
                     child: RichText(
@@ -253,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: GoogleFonts.lato(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: KPrimaryColor,
+                              color: kPrimaryColor,
                             ),
                           ),
                         ],

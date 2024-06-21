@@ -11,16 +11,16 @@ class OrderClip extends StatelessWidget {
     return Container(
       height: 120,
       width: double.infinity,
-      color: KPrimaryColor,
+      color: kPrimaryColor,
       child: Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 17.0),
           child: Text(
             'My Orders',
-            style: KPrimaryFont(
+            style: kPrimaryFont(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: KSecondaryColor,
+              color: kSecondaryColor,
             ),
           ),
         ),

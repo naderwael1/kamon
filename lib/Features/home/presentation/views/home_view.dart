@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kamon/Features/home/presentation/views/widgets/best_saller_list_view';
+import 'package:kamon/Features/home/presentation/views/widgets/best_saller_list_view.dart';
 import 'package:kamon/Features/home/presentation/views/widgets/home_clip.dart';
 import 'package:kamon/constant.dart';
-import 'package:kamon/core/shared_widget/Drawer/customDrawer.dart';
+import 'package:kamon/core/shared_widget/Drawer/custom_drawer.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 class HomeView extends StatelessWidget {
@@ -81,7 +81,7 @@ class HomeView extends StatelessWidget {
                     height: 200, // Fixed height for the horizontal ListView
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      children: [
+                      children: const [
                         BestSellerCard(imageUrl: testImage, price: '103.0'),
                         BestSellerCard(imageUrl: testImage, price: '50.0'),
                         BestSellerCard(imageUrl: testImage, price: '12.99'),

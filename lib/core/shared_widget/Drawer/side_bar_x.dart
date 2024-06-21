@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kamon/Features/home/presentation/views/home_view.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-class sideBarHR extends StatelessWidget {
-  const sideBarHR({Key? key}) : super(key: key);
+class SideBarHR extends StatelessWidget {
+  const SideBarHR({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class sideBarHR extends StatelessWidget {
             );
           },
         ),
-        SidebarXItem(icon: Icons.search, label: 'Search'),
+        const SidebarXItem(icon: Icons.search, label: 'Search'),
       ],
     );
   }

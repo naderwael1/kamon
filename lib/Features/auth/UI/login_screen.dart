@@ -3,10 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/auth/UI/signin_screen.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
+
 import '../../../constant.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -22,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KSecondaryColor,
+      backgroundColor: kSecondaryColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -30,16 +34,16 @@ class _LoginScreenState extends State<LoginScreen> {
               clipper: BaseClipper(),
               child: Container(
                 height: 150,
-                color: KPrimaryColor,
+                color: kPrimaryColor,
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 50.0),
                     child: Text(
                       'Log In',
-                      style: KPrimaryFont(
+                      style: kPrimaryFont(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: KSecondaryColor,
+                        color: kSecondaryColor,
                       ),
                     ),
                   ),
@@ -57,10 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         'Welcome , We are happy to see you again',
-                        style: KPrimaryFont(
+                        style: kPrimaryFont(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -75,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -101,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -135,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         'Forget Password',
                         style: GoogleFonts.lato(
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                           fontSize: 14,
                         ),
                       ),
@@ -147,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 50,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: KPrimaryColor,
+                        backgroundColor: kPrimaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
@@ -156,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AppLayoutScreen()),
+                              builder: (context) => const AppLayoutScreen()),
                         );
                       },
                       child: Text(
@@ -174,7 +178,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignUpScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const SignUpScreen()),
                       );
                     },
                     child: RichText(
@@ -192,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: GoogleFonts.lato(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: KPrimaryColor,
+                              color: kPrimaryColor,
                             ),
                           ),
                         ],

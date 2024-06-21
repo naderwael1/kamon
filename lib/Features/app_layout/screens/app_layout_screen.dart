@@ -19,7 +19,7 @@ class AppLayoutScreen extends StatelessWidget {
       const HomeView(),
       const OrderLayoutScreen(),
       const ActiceOrderScreen(),
-      BranchLocator(),
+      const BranchLocator(),
     ];
 
     return BlocProvider(

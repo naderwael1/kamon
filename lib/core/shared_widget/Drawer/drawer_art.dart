@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'drawerItemModel.dart';
+import 'drawer_item_model.dart';
 class CustomDrwerItem extends StatelessWidget {
   const CustomDrwerItem({super.key, required this.drawerItemModel});
 

@@ -4,7 +4,7 @@ import 'package:kamon/Features/ordars/activeOrder/active_order_screen.dart';
 import 'package:kamon/Features/ordars/app_layout/controllers/app_layout_cubit.dart';
 import 'package:kamon/Features/ordars/order_clip.dart';
 import 'package:kamon/constant.dart';
-import 'package:kamon/core/shared_widget/Drawer/customDrawer.dart';
+import 'package:kamon/core/shared_widget/Drawer/custom_drawer.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 /// AppLayoutScreen
@@ -36,7 +36,7 @@ class OrderLayoutScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.black12,
                         spreadRadius: 5,
@@ -93,12 +93,12 @@ class OrderLayoutScreen extends StatelessWidget {
       onTap: () => context.read<AppLayoutCubit>().changeIndex(index),
       child: Container(
         decoration: BoxDecoration(
-          color: isSelected ? KPrimaryColor : Colors.white,
+          color: isSelected ? kPrimaryColor : Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: KPrimaryColor.withOpacity(0.5),
+                    color: kPrimaryColor.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 10,
                   ),
@@ -109,7 +109,7 @@ class OrderLayoutScreen extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: isSelected ? KSecondaryColor : KPrimaryColor,
+            color: isSelected ? kSecondaryColor : kPrimaryColor,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),

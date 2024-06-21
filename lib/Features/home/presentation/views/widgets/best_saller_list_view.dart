@@ -5,13 +5,14 @@ class BestSellerCard extends StatelessWidget {
   final String imageUrl;
   final String price;
 
-  BestSellerCard({required this.imageUrl, required this.price});
+  const BestSellerCard(
+      {super.key, required this.imageUrl, required this.price});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 150,
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
         image: DecorationImage(
@@ -22,10 +23,11 @@ class BestSellerCard extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.5),
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0)),
+            borderRadius:
+                const BorderRadius.vertical(bottom: Radius.circular(20.0)),
           ),
           child: Text(
             '\$$price',

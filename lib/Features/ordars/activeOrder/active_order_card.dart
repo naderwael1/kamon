@@ -1,8 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:kamon/constant.dart';
 
 class ActiveOrderCard extends StatelessWidget {
@@ -45,10 +41,10 @@ class ActiveOrderCard extends StatelessWidget {
                       'order number one or may be order number two or three',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: KPrimaryFont(
+                      style: kPrimaryFont(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: KItemFontColor,
+                        color: kItemFontColor,
                       ),
                     ),
                   ),
@@ -58,18 +54,18 @@ class ActiveOrderCard extends StatelessWidget {
                   ),
                   Text(
                     '29 Nov, 01:20 pm ',
-                    style: KPrimaryFont(
+                    style: kPrimaryFont(
                       fontSize: 14,
                       fontWeight: FontWeight.w100,
-                      color: KItemFontColor,
+                      color: kItemFontColor,
                     ),
                   ),
                   Text(
                     'Cairo branch',
-                    style: KSecondaryFont(
+                    style: kSecondaryFont(
                       fontSize: 14,
                       fontWeight: FontWeight.w200,
-                      color: KPrimaryColor,
+                      color: kPrimaryColor,
                     ),
                   )
                 ],
@@ -80,27 +76,27 @@ class ActiveOrderCard extends StatelessWidget {
               Column(children: [
                 Text(
                   'Total',
-                  style: KPrimaryFont(
+                  style: kPrimaryFont(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    color: KItemFontColor,
+                    color: kItemFontColor,
                   ),
                 ),
                 Text(
                   '200 EGP',
-                  style: KPrimaryFont(
+                  style: kPrimaryFont(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    color: KPrimaryColor,
+                    color: kPrimaryColor,
                   ),
                 ),
                 const SizedBox(height: 40),
                 Text(
                   'Visa ',
-                  style: KPrimaryFont(
+                  style: kPrimaryFont(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: KPrimaryColor,
+                    color: kPrimaryColor,
                   ),
                 ),
               ])

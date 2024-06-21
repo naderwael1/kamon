@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kamon/Features/home/presentation/views/home_view.dart';
-import 'drawerItemModel.dart';
+
+import 'drawer_item_model.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -66,9 +67,9 @@ class ManagerDrawerView extends StatelessWidget {
 
 class CustomDrawerItem extends StatelessWidget {
   const CustomDrawerItem({
-    Key? key,
+    super.key,
     required this.drawerItemModel,
-  }) : super(key: key);
+  });
 
   final DrawerItemModel drawerItemModel;
 
@@ -85,7 +86,8 @@ class CustomDrawerItem extends StatelessWidget {
       child: ListTile(
         title: Text(
           drawerItemModel.title,
-          style: TextStyle(color: Colors.black), // Set text color to black
+          style:
+              const TextStyle(color: Colors.black), // Set text color to black
         ),
         leading: Icon(
           drawerItemModel.icon,

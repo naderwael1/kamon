@@ -1,8 +1,8 @@
+import 'dart:async'; // Import dart:async for Future
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kamon/Features/auth/UI/login_screen.dart';
-import 'package:kamon/Features/home/presentation/views/home_view.dart';
-import 'dart:async'; // Import dart:async for Future
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({super.key});
@@ -26,7 +26,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
 
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 1), () {
-      Get.to(() => LoginScreen(), transition: Transition.fade);
+      Get.to(() => const LoginScreen(), transition: Transition.fade);
     });
   }
 

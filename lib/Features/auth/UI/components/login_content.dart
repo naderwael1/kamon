@@ -11,7 +11,7 @@ enum Screens {
 }
 
 class LoginContent extends StatefulWidget {
-  const LoginContent({Key? key}) : super(key: key);
+  const LoginContent({super.key});
 
   @override
   State<LoginContent> createState() => _LoginContentState();
@@ -57,7 +57,7 @@ class _LoginContentState extends State<LoginContent>
         onPressed: () {},
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 14),
-          backgroundColor: Color(0xffbfc2df),
+          backgroundColor: const Color(0xffbfc2df),
           shape: const StadiumBorder(),
           elevation: 8,
           shadowColor: Colors.black87,
@@ -81,7 +81,7 @@ class _LoginContentState extends State<LoginContent>
           Flexible(
             child: Container(
               height: 1,
-              color: Color(0xffbfc2df),
+              color: const Color(0xffbfc2df),
             ),
           ),
           const Padding(
@@ -97,7 +97,7 @@ class _LoginContentState extends State<LoginContent>
           Flexible(
             child: Container(
               height: 1,
-              color: Color(0xffbfc2df),
+              color: const Color(0xffbfc2df),
             ),
           ),
         ],

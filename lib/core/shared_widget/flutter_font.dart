@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class baseNavBarIcons {
-  baseNavBarIcons._();
+class BaseNavBarIcons {
+  BaseNavBarIcons._();
   static const String _flutterFont = 'flutterfont';
   static const IconData flutterLogoCircle =
       IconData(0xe000, fontFamily: _flutterFont);

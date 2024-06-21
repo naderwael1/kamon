@@ -28,7 +28,7 @@ class HomeClip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 190, // Adjusted height to fit content
-      color: KPrimaryColor,
+      color: kPrimaryColor,
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -46,7 +46,7 @@ class HomeClip extends StatelessWidget {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                       filled: true,
-                      fillColor: KfillColor,
+                      fillColor: kfillColor,
                     ),
                   ),
                 ),
@@ -65,7 +65,7 @@ class HomeClip extends StatelessWidget {
                       child: const Center(
                         child: Icon(
                           Icons.shopping_cart_outlined,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -85,7 +85,7 @@ class HomeClip extends StatelessWidget {
                       child: const Center(
                         child: Icon(
                           Icons.notifications_outlined,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -107,7 +107,7 @@ class HomeClip extends StatelessWidget {
                       child: const Center(
                         child: Icon(
                           Icons.person_2_outlined,
-                          color: KPrimaryColor,
+                          color: kPrimaryColor,
                         ),
                       ),
                     ),
@@ -118,7 +118,7 @@ class HomeClip extends StatelessWidget {
             const SizedBox(height: 20.0),
             Text(
               _getGreetingMessage(),
-              style: KPrimaryFont(
+              style: kPrimaryFont(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -126,9 +126,9 @@ class HomeClip extends StatelessWidget {
             ),
             Text(
               _getGreetingSubMessage(),
-              style: KPrimaryFont(
+              style: kPrimaryFont(
                 fontSize: 18,
-                color: KSecondaryColor,
+                color: kSecondaryColor,
               ),
             ),
           ],
