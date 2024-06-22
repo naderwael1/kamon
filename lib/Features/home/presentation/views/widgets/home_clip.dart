@@ -28,7 +28,7 @@ class HomeClip extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<SearchViewModel>(context);
     return Container(
-      height: 300, // Adjusted height to fit content
+      height: 210, // Adjusted height to fit content
       color: kPrimaryColor,
       child: Padding(
         padding: const EdgeInsets.all(24.0),
