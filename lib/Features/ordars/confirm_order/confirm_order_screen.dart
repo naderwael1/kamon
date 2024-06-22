@@ -6,7 +6,6 @@ class BranchLocator extends StatefulWidget {
   const BranchLocator({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _BranchLocatorState createState() => _BranchLocatorState();
 }
 
@@ -31,6 +30,7 @@ class _BranchLocatorState extends State<BranchLocator> {
       Position position = await _locationService.getCurrentLocation();
       double minDistance = double.infinity;
       String closestBranch = '';
+      const double deliveryRadius = 10000.0; // 10 km in meters
 
       branches.forEach((branch, coordinates) {
         double distance = Geolocator.distanceBetween(
@@ -46,7 +46,11 @@ class _BranchLocatorState extends State<BranchLocator> {
       });
 
       setState(() {
-        _branchMessage = 'Welcome to our $closestBranch branch!';
+        if (minDistance <= deliveryRadius) {
+          _branchMessage = 'Welcome to our $closestBranch branch!';
+        } else {
+          _branchMessage = 'You are out of the delivery area.';
+        }
       });
     } catch (e) {
       setState(() {

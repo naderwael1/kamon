@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kamon/Features/home/data/seach_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:kamon/constant.dart';
 
 class HomeClip extends StatelessWidget {
-  const HomeClip({
-    super.key,
-  });
+  const HomeClip({super.key});
 
   String _getGreetingMessage() {
     final hour = DateTime.now().hour;
@@ -26,8 +26,9 @@ class HomeClip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<SearchViewModel>(context);
     return Container(
-      height: 190, // Adjusted height to fit content
+      height: 300, // Adjusted height to fit content
       color: kPrimaryColor,
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -38,6 +39,7 @@ class HomeClip extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextFormField(
+                    onChanged: viewModel.searchEmployees,
                     decoration: InputDecoration(
                       hintText: 'Search',
                       prefixIcon: const Icon(Icons.search),
@@ -56,8 +58,7 @@ class HomeClip extends StatelessWidget {
                   child: Container(
                     height: 30,
                     width: 30,
-                    color: Colors
-                        .white, // Set the background color of the container
+                    color: Colors.white,
                     child: GestureDetector(
                       onTap: () {
                         // Handle shopping cart button press
@@ -80,7 +81,7 @@ class HomeClip extends StatelessWidget {
                     color: Colors.white,
                     child: GestureDetector(
                       onTap: () {
-                        // Handle shopping cart button press
+                        // Handle notifications button press
                       },
                       child: const Center(
                         child: Icon(
@@ -93,16 +94,14 @@ class HomeClip extends StatelessWidget {
                 ),
                 const SizedBox(width: 10.0),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                      10.0), // Adjust the radius as needed
+                  borderRadius: BorderRadius.circular(10.0),
                   child: Container(
-                    height: 30, // Adjusted height to better fit the icon
-                    width: 30, // Adjusted width to better fit the icon
-                    color: Colors
-                        .white, // Set the background color of the container
+                    height: 30,
+                    width: 30,
+                    color: Colors.white,
                     child: GestureDetector(
                       onTap: () {
-                        // Handle shopping cart button press
+                        // Handle profile button press
                       },
                       child: const Center(
                         child: Icon(

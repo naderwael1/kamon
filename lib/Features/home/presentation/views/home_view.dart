@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kamon/Features/home/data/seach_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/home/presentation/views/widgets/best_saller_list_view.dart';
 import 'package:kamon/Features/home/presentation/views/widgets/home_clip.dart';
@@ -11,88 +13,140 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const CustomDrawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipPath(
-              clipper: BaseClipper(),
-              child: const HomeClip(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Top Categories',
-                    style: GoogleFonts.lato(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  SizedBox(
-                    height: 120, // Fixed height for the horizontal ListView
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        _buildCategoryItem('Beverages', testImage),
-                        _buildCategoryItem(
-                            'Snack', 'https://example.com/snack.jpg'),
-                        _buildCategoryItem(
-                            'Seafood', 'https://example.com/seafood.jpg'),
-                        _buildCategoryItem(
-                            'Dessert', 'https://example.com/dessert.jpg'),
-                        _buildCategoryItem(
-                            'Seafood', 'https://example.com/seafood.jpg'),
-                        _buildCategoryItem(
-                            'Dessert', 'https://example.com/dessert.jpg'),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return ChangeNotifierProvider(
+      create: (context) => SearchViewModel(),
+      child: Scaffold(
+        drawer: const CustomDrawer(),
+        body: Consumer<SearchViewModel>(
+          builder: (context, viewModel, child) {
+            return Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Best Seller',
-                        style: GoogleFonts.lato(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
+                      ClipPath(
+                        clipper: BaseClipper(),
+                        child: const HomeClip(),
                       ),
-                      Text(
-                        'View All',
-                        style: GoogleFonts.lato(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Top Categories',
+                              style: GoogleFonts.lato(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 16.0),
+                            SizedBox(
+                              height:
+                                  120, // Fixed height for the horizontal ListView
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  _buildCategoryItem('Beverages', testImage),
+                                  _buildCategoryItem(
+                                      'Snack', 'https://example.com/snack.jpg'),
+                                  _buildCategoryItem('Seafood',
+                                      'https://example.com/seafood.jpg'),
+                                  _buildCategoryItem('Dessert',
+                                      'https://example.com/dessert.jpg'),
+                                  _buildCategoryItem('Seafood',
+                                      'https://example.com/seafood.jpg'),
+                                  _buildCategoryItem('Dessert',
+                                      'https://example.com/dessert.jpg'),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 24.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Best Seller',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  'View All',
+                                  style: GoogleFonts.lato(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16.0),
+                            SizedBox(
+                              height:
+                                  200, // Fixed height for the horizontal ListView
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: const [
+                                  BestSellerCard(
+                                      imageUrl: testImage, price: '103.0'),
+                                  BestSellerCard(
+                                      imageUrl: testImage, price: '50.0'),
+                                  BestSellerCard(
+                                      imageUrl: testImage, price: '12.99'),
+                                  BestSellerCard(
+                                      imageUrl: testImage, price: '8.20'),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16.0),
-                  SizedBox(
-                    height: 200, // Fixed height for the horizontal ListView
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: const [
-                        BestSellerCard(imageUrl: testImage, price: '103.0'),
-                        BestSellerCard(imageUrl: testImage, price: '50.0'),
-                        BestSellerCard(imageUrl: testImage, price: '12.99'),
-                        BestSellerCard(imageUrl: testImage, price: '8.20'),
-                      ],
+                ),
+                if (viewModel.searchedForEmployees.isNotEmpty)
+                  Positioned(
+                    top: 100, // Adjust this value as needed
+                    left: 16,
+                    right: 16,
+                    child: Material(
+                      color: Colors.transparent, // Set Material to transparent
+                      elevation: 8.0,
+                      borderRadius: BorderRadius.circular(12.0),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height -
+                            100, // Adjust height as needed
+                        padding: const EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: Colors
+                              .transparent, // Set container to transparent
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: ListView.builder(
+                          itemCount: viewModel.searchedForEmployees.length,
+                          itemBuilder: (context, index) {
+                            final employee =
+                                viewModel.searchedForEmployees[index];
+                            return Card(
+                              child: ListTile(
+                                title: Text(employee.employeeName),
+                                subtitle: Text(
+                                    'Position: ${employee.employeePosition}\nBranch: ${employee.employeeBranch}'),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );
