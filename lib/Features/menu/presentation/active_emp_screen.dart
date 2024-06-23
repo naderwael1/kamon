@@ -119,7 +119,6 @@ class _ActiveEmployeeScreenState extends State<ActiveEmployeeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustomDrawer(),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 29, 51, 71), // Updated color
         leading: _isSearching

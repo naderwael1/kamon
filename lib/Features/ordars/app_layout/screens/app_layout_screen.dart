@@ -25,7 +25,6 @@ class OrderLayoutScreen extends StatelessWidget {
       child: BlocBuilder<AppLayoutCubit, int>(
         builder: (context, state) {
           return Scaffold(
-            drawer: const CustomDrawer(),
             body: Column(
               children: [
                 ClipPath(

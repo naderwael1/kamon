@@ -4,12 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:kamon/constant.dart';
 
 class HomeClip extends StatelessWidget {
-  const HomeClip({super.key});
+  final String branchLocation;
+
+  const HomeClip({super.key, required this.branchLocation});
 
   String _getGreetingMessage() {
     final hour = DateTime.now().hour;
     if (hour < 12) {
       return 'Good Morning';
+    } else if (hour < 17) {
+      return 'Good Afternoon';
     } else {
       return 'Good Evening';
     }
@@ -19,6 +23,8 @@ class HomeClip extends StatelessWidget {
     final hour = DateTime.now().hour;
     if (hour < 12) {
       return 'Rise And Shine! It\'s Breakfast Time';
+    } else if (hour < 17) {
+      return 'Hope You\'re Having a Productive Day!';
     } else {
       return 'Hope You Had a Great Day!';
     }
@@ -116,7 +122,7 @@ class HomeClip extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             Text(
-              _getGreetingMessage(),
+              '${_getGreetingMessage()}, $branchLocation Branch',
               style: kPrimaryFont(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,

@@ -7,7 +7,7 @@ import 'package:kamon/core/shared_widget/base_clip_path.dart';
 import '../../../constant.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({super.key, required String branchLocation});
 
   @override
   // ignore: library_private_types_in_public_api

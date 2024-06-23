@@ -10,14 +10,15 @@ import 'package:kamon/core/shared_widget/Drawer/custom_drawer.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final String branchLocation;
+
+  const HomeView({super.key, required this.branchLocation});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => SearchViewModel(),
       child: Scaffold(
-        drawer: const CustomDrawer(),
         body: Consumer<SearchViewModel>(
           builder: (context, viewModel, child) {
             return Stack(
@@ -28,7 +29,7 @@ class HomeView extends StatelessWidget {
                     children: [
                       ClipPath(
                         clipper: BaseClipper(),
-                        child: const HomeClip(),
+                        child: HomeClip(branchLocation: branchLocation),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),

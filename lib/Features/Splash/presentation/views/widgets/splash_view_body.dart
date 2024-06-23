@@ -1,8 +1,10 @@
 import 'dart:async'; // Import dart:async for Future
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:kamon/Features/auth/UI/login_screen.dart';
+import 'package:kamon/Features/home/data/get_location.dart';
+import 'package:kamon/Features/home/presentation/views/home_view.dart';
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({super.key});
@@ -16,17 +18,62 @@ class _SplashViewbodyState extends State<SplashViewbody>
   late AnimationController animationController;
   late Animation<Offset> leftSlidingAnimation;
   late Animation<Offset> rightSlidingAnimation;
+  final LocationService _locationService = LocationService();
+  String branchLocation = 'Unknown';
+
+  final Map<String, List<double>> branches = {
+    'Cairo': [30.0444, 31.2357],
+    'Alexandria': [31.2001, 29.9187],
+    'Port Said': [31.2653, 32.3019],
+  };
 
   @override
   void initState() {
     super.initState();
     initAnimated();
-    navigateToHome();
+    getBranchAndNearbyLocations();
+  }
+
+  Future<void> getBranchAndNearbyLocations() async {
+    try {
+      Position position = await _locationService.getCurrentLocation();
+      double minDistance = double.infinity;
+      String closestBranch = '';
+      const double deliveryRadius = 10000.0; // 10 km in meters
+
+      branches.forEach((branch, coordinates) {
+        double distance = Geolocator.distanceBetween(
+          position.latitude,
+          position.longitude,
+          coordinates[0],
+          coordinates[1],
+        );
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestBranch = branch;
+        }
+      });
+
+      setState(() {
+        if (minDistance <= deliveryRadius) {
+          branchLocation = closestBranch;
+        } else {
+          branchLocation = 'Out of delivery area';
+        }
+      });
+    } catch (e) {
+      setState(() {
+        branchLocation = 'Failed to determine location';
+      });
+    } finally {
+      navigateToHome();
+    }
   }
 
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 1), () {
-      Get.to(() => const LoginScreen(), transition: Transition.fade);
+      Get.to(() => HomeView(branchLocation: branchLocation),
+          transition: Transition.fade);
     });
   }
 

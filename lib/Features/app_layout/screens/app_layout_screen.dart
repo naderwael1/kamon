@@ -17,7 +17,9 @@ class AppLayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screens = <Widget>[
-      const HomeView(),
+      const HomeView(
+        branchLocation: '',
+      ),
       const OrderLayoutScreen(),
       const ActiveEmployeeScreen(),
       const BranchLocator(),

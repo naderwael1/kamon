@@ -17,7 +17,9 @@ class SideBarHR extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomeView(),
+                builder: (context) => const HomeView(
+                  branchLocation: '',
+                ),
               ),
             );
           },
