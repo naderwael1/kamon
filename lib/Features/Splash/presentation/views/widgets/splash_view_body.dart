@@ -1,7 +1,7 @@
 import 'dart:async'; // Import dart:async for Future
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/home/data/get_location.dart';
 
@@ -79,10 +79,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
 
   void navigateToAppLayout() {
     Future.delayed(const Duration(seconds: 1), () {
-      Get.to(
-          () => AppLayoutScreen(
-              branchLocation: branchLocation, branchId: branchId),
-          transition: Transition.fade);
+      GoRouter.of(context).push('/homeView');
     });
   }
 
