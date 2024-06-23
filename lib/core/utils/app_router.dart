@@ -3,6 +3,7 @@ import 'package:kamon/Features/Splash/presentation/views/splash_view.dart';
 import 'package:kamon/Features/home/presentation/views/home_view.dart';
 
 abstract class AppRouter {
+  static const KHomeView = '/homeView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -10,7 +11,7 @@ abstract class AppRouter {
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
-        path: '/homeView',
+        path: KHomeView,
         builder: (context, state) => const HomeView(
           branchId: 1,
           branchLocation: '',

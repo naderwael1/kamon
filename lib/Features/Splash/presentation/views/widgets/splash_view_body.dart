@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/home/data/get_location.dart';
+import 'package:kamon/core/utils/app_router.dart';
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({super.key});
@@ -79,7 +80,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
 
   void navigateToAppLayout() {
     Future.delayed(const Duration(seconds: 1), () {
-      GoRouter.of(context).push('/homeView');
+      GoRouter.of(context).push(AppRouter.KHomeView);
     });
   }
 
