@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:kamon/Features/Splash/presentation/views/splash_view.dart';
+import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/home/presentation/views/home_view.dart';
 
 abstract class AppRouter {
@@ -12,7 +13,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: KHomeView,
-        builder: (context, state) => const HomeView(
+        builder: (context, state) => const AppLayoutScreen(
           branchId: 1,
           branchLocation: '',
         ),

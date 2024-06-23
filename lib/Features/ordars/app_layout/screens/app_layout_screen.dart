@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kamon/Features/menu/presentation/item_screen.dart';
 import 'package:kamon/Features/ordars/activeOrder/active_order_screen.dart';
 import 'package:kamon/Features/ordars/app_layout/controllers/app_layout_cubit.dart';
 import 'package:kamon/Features/ordars/order_clip.dart';
@@ -15,7 +16,7 @@ class OrderLayoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screens = <Widget>[
       const ActiceOrderScreen(),
-      const ActiceOrderScreen(),
+      const ItemScreen(),
       const ActiceOrderScreen(),
     ];
 

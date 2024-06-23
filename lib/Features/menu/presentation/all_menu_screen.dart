@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kamon/Features/menu/model/menu_model.dart';
 import 'package:provider/provider.dart';
 import 'package:kamon/Features/home/data/seach_view_model.dart';
-import 'package:kamon/Features/menu/model/menu_model.dart';
 
 class MenuScreen extends StatefulWidget {
   @override

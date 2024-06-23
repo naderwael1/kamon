@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:kamon/Features/menu/model/active_emp_model.dart';
-import 'package:kamon/core/shared_widget/my_button_nav_bar.dart';
-import '../Data/get_active_emp.dart';
-import 'custom_active_card.dart';
+import '../../menu/Data/get_active_emp.dart';
 
 class ActiveEmployeeScreen extends StatefulWidget {
   const ActiveEmployeeScreen({Key? key}) : super(key: key);
