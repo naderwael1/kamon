@@ -4,7 +4,6 @@ import 'package:kamon/Features/ordars/activeOrder/active_order_screen.dart';
 import 'package:kamon/Features/ordars/app_layout/controllers/app_layout_cubit.dart';
 import 'package:kamon/Features/ordars/order_clip.dart';
 import 'package:kamon/constant.dart';
-import 'package:kamon/core/shared_widget/Drawer/custom_drawer.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 /// AppLayoutScreen

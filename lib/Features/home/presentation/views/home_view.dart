@@ -6,13 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/home/presentation/views/widgets/best_saller_list_view.dart';
 import 'package:kamon/Features/home/presentation/views/widgets/home_clip.dart';
 import 'package:kamon/constant.dart';
-import 'package:kamon/core/shared_widget/Drawer/custom_drawer.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 class HomeView extends StatelessWidget {
   final String branchLocation;
+  final int branchId;
 
-  const HomeView({super.key, required this.branchLocation});
+  const HomeView(
+      {super.key, required this.branchLocation, required this.branchId});
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +112,7 @@ class HomeView extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (viewModel.searchedForEmployees.isNotEmpty)
+                if (viewModel.searchedForMenuItems.isNotEmpty)
                   const SearchResultList(),
               ],
             );

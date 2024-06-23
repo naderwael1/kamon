@@ -25,14 +25,14 @@ class SearchResultList extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: ListView.builder(
-            itemCount: viewModel.searchedForEmployees.length,
+            itemCount: viewModel.searchedForMenuItems.length,
             itemBuilder: (context, index) {
-              final employee = viewModel.searchedForEmployees[index];
+              final menuItem = viewModel.searchedForMenuItems[index];
               return Card(
                 child: ListTile(
-                  title: Text(employee.employeeName),
-                  subtitle: Text(
-                      'Position: ${employee.employeePosition}\nBranch: ${employee.employeeBranch}'),
+                  title: Text(menuItem.itemName),
+                  subtitle: Text(menuItem.itemDescription),
+                  trailing: Text('\$${menuItem.price}'),
                 ),
               );
             },

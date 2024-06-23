@@ -32,7 +32,6 @@ class HomeClip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<SearchViewModel>(context);
     return Container(
       height: 210, // Adjusted height to fit content
       color: kPrimaryColor,
@@ -45,7 +44,9 @@ class HomeClip extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextFormField(
-                    onChanged: viewModel.searchEmployees,
+                    onChanged:
+                        Provider.of<SearchViewModel>(context, listen: false)
+                            .searchMenuItems,
                     decoration: InputDecoration(
                       hintText: 'Search',
                       prefixIcon: const Icon(Icons.search),

@@ -27,6 +27,7 @@ class AppLayoutScreen extends StatelessWidget {
     final screens = <Widget>[
       HomeView(
         branchLocation: branchLocation,
+        branchId: 1,
       ),
       const OrderLayoutScreen(),
       const ActiveEmployeeScreen(),
