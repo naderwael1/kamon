@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kamon/Features/app_layout/controllers/app_layout_cubit.dart';
 import 'package:kamon/Features/home/presentation/views/home_view.dart';
 import 'package:kamon/Features/menu/presentation/active_emp_screen.dart';
+import 'package:kamon/Features/menu/presentation/all_menu_screen.dart';
 import 'package:kamon/Features/ordars/activeOrder/active_order_screen.dart';
 import 'package:kamon/Features/ordars/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/ordars/confirm_order/confirm_order_screen.dart';
@@ -12,17 +13,24 @@ import 'package:kamon/core/shared_widget/my_button_nav_bar.dart';
 /// AppLayoutScreen
 class AppLayoutScreen extends StatelessWidget {
   /// AppLayoutScreen constructor
-  const AppLayoutScreen({super.key});
+  final String branchLocation;
+  final int branchId;
+
+  const AppLayoutScreen({
+    super.key,
+    required this.branchLocation,
+    required this.branchId,
+  });
 
   @override
   Widget build(BuildContext context) {
     final screens = <Widget>[
-      const HomeView(
-        branchLocation: '',
+      HomeView(
+        branchLocation: branchLocation,
       ),
       const OrderLayoutScreen(),
       const ActiveEmployeeScreen(),
-      const BranchLocator(),
+      MenuScreen(),
     ];
 
     return BlocProvider(

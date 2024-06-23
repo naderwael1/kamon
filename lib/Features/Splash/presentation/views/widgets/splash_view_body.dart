@@ -2,9 +2,8 @@ import 'dart:async'; // Import dart:async for Future
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:kamon/Features/auth/UI/login_screen.dart';
+import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/home/data/get_location.dart';
-import 'package:kamon/Features/home/presentation/views/home_view.dart';
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({super.key});
@@ -20,11 +19,18 @@ class _SplashViewbodyState extends State<SplashViewbody>
   late Animation<Offset> rightSlidingAnimation;
   final LocationService _locationService = LocationService();
   String branchLocation = 'Unknown';
+  int branchId = 0;
 
   final Map<String, List<double>> branches = {
     'Cairo': [30.0444, 31.2357],
     'Alexandria': [31.2001, 29.9187],
     'Port Said': [31.2653, 32.3019],
+  };
+
+  final Map<String, int> branchIds = {
+    'Cairo': 3,
+    'Alexandria': 1,
+    'Port Said': 2,
   };
 
   @override
@@ -57,6 +63,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
       setState(() {
         if (minDistance <= deliveryRadius) {
           branchLocation = closestBranch;
+          branchId = branchIds[closestBranch]!;
         } else {
           branchLocation = 'Out of delivery area';
         }
@@ -66,13 +73,15 @@ class _SplashViewbodyState extends State<SplashViewbody>
         branchLocation = 'Failed to determine location';
       });
     } finally {
-      navigateToHome();
+      navigateToAppLayout();
     }
   }
 
-  void navigateToHome() {
+  void navigateToAppLayout() {
     Future.delayed(const Duration(seconds: 1), () {
-      Get.to(() => HomeView(branchLocation: branchLocation),
+      Get.to(
+          () => AppLayoutScreen(
+              branchLocation: branchLocation, branchId: branchId),
           transition: Transition.fade);
     });
   }
@@ -105,7 +114,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
           height: 130,
           width: 140,
           child: Image.asset(
-            'assets/images/logo.png', // Replace with your ce image asset path
+            'assets/images/logo.png', // Replace with your logo image asset path
           ),
         ),
         Center(
@@ -119,7 +128,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
                   height: 35,
                   width: 50,
                   child: Image.asset(
-                    'assets/images/m.png', // Replace with your ce image asset path
+                    'assets/images/m.png', // Replace with your center image asset path
                     fit: BoxFit.cover,
                   ),
                 ),
