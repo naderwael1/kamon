@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart';
 
@@ -140,32 +141,43 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.remove, color: Colors.orange),
-                    onPressed: () {
-                      setState(() {
-                        if (quantity > 1) quantity--;
-                      });
-                    },
+              Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 211, 185, 119),
+                  borderRadius:
+                      BorderRadius.circular(100), // Circular border radius
+                ),
+                child: SizedBox(
+                  width: 120,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CircularIconButton(
+                        icon: Icons.remove,
+                        onPressed: () {
+                          setState(() {
+                            if (quantity > 1) quantity--;
+                          });
+                        },
+                      ),
+                      Text(
+                        '$quantity',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      CircularIconButton(
+                        icon: Icons.add,
+                        onPressed: () {
+                          setState(() {
+                            quantity++;
+                          });
+                        },
+                      ),
+                    ],
                   ),
-                  Text(
-                    '$quantity',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.add, color: Colors.orange),
-                    onPressed: () {
-                      setState(() {
-                        quantity++;
-                      });
-                    },
-                  ),
-                ],
+                ),
               ),
             ],
           ),
@@ -190,20 +202,29 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
               ),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            'Preparation Time: ${widget.preparationTime} mins',
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.blue,
-            ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              const Icon(Icons.timer, color: Colors.blue, size: 20),
+              const SizedBox(width: 4),
+              Text(
+                'Preparation Time: ${widget.preparationTime} mins',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.blue,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Text(
             widget.itemDescription,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.black,
+            style: GoogleFonts.lato(
+              textStyle: Theme.of(context).textTheme.displayLarge,
+              fontSize: 25,
+              color: Color.fromARGB(255, 85, 1, 1),
+              fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),
           ),
@@ -225,6 +246,36 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CircularIconButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+  final Color color;
+
+  const CircularIconButton({
+    Key? key,
+    required this.icon,
+    required this.onPressed,
+    this.color = const Color.fromARGB(102, 36, 10, 51),
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        icon: Icon(icon, color: color),
+        onPressed: onPressed,
+        iconSize: 24.0,
+        padding: EdgeInsets.zero,
+        constraints: BoxConstraints(),
       ),
     );
   }
