@@ -29,10 +29,18 @@ abstract class AppRouter {
           final itemId = extra['itemId'] as int;
           final itemName = extra['itemName'] as String;
           final itemDescription = extra['itemDescription'] as String;
+          final averageRating = extra['averageRating'] as String;
+          final ratersNumber = extra['ratersNumber'] as int;
+          final price = extra['price'] as String;
+
           return ItemScreen(
             itemId: itemId,
             itemName: itemName,
             itemDescription: itemDescription,
+            averageRating: averageRating,
+            ratersNumber: ratersNumber,
+            price: price,
+            imageUrl: '',
           );
         },
       ),

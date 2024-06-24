@@ -9,7 +9,7 @@ class ItemScreenClipPath extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 230,
       color: kPrimaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,13 +30,7 @@ class ItemScreenClipPath extends StatelessWidget {
               ),
             ),
           ),
-          const Text(
-            'Kabeer Food',
-            style: TextStyle(
-              color: Colors.orange,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Image.asset('assets/images/kamonText.png'),
           Container(
             height: 30,
             width: 30,
