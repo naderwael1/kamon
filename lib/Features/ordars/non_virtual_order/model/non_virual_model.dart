@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Order {
   final String customerId;
   final String branchId;
@@ -39,9 +41,10 @@ class Order {
       'branchId': branchId,
       'orderType': orderType,
       'orderStatus': orderStatus,
-      'totalPrice': totalPrice,
+      'totalPrice': double.parse(totalPrice),
       'paymentMethod': paymentMethod,
-      'orderItems': orderItems.map((item) => item.toJson()).toList(),
+      'orderItems':
+          jsonEncode(orderItems.map((item) => item.toJson()).toList()),
       'additionalDiscount': additionalDiscount,
       'creditCardNumber': creditCardNumber,
       'creditCardExpireMonth': creditCardExpireMonth,

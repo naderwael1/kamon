@@ -4,12 +4,15 @@ import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.d
 import 'package:kamon/constant.dart';
 
 Future<String> placeOrder(Order order) async {
-  final url = 'http://$baseUrl:4000/admin/branch/place-order';
+  final url = 'http://$baseUrl:4000/user/order/nonVirtualOrder';
   try {
+    final jsonPayload = jsonEncode(order.toJson());
+    print('JSON Payload: $jsonPayload'); // Print JSON payload for debugging
+
     final response = await http.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(order.toJson()),
+      body: jsonPayload,
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       // Success
