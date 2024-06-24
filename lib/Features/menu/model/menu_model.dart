@@ -2,18 +2,18 @@ import 'dart:convert';
 
 class MenuItem {
   int itemId;
-  String itemName;
+  String itemName; //take
   int categoryId;
-  String itemDescription;
+  String itemDescription; //take
   PreparationTime preparationTime;
   String? picturePath;
-  bool vegetarian;
-  bool healthy;
-  String itemStatus;
-  String discount;
-  String price;
-  String averageRating;
-  int ratersNumber;
+  bool vegetarian; //take
+  bool healthy; //take
+  String itemStatus; //wait api
+  String discount; //wait api
+  String price; //take
+  String averageRating; //take
+  int ratersNumber; //take
 
   MenuItem({
     required this.itemId,
