@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kamon/Features/menu/presentation/item_screen.dart';
@@ -34,16 +36,8 @@ class SearchResultList extends StatelessWidget {
                 onTap: () {
                   GoRouter.of(context).push(
                     '/menu',
-                    extra: {
-                      'itemId': menuItem.itemId,
-                      'itemName': menuItem.itemName,
-                      'itemDescription': menuItem.itemDescription,
-                      'imageUrl': menuItem.picturePath ??
-                          'https://example.com/default-image.jpg',
-                      'averageRating': menuItem.averageRating,
-                      'ratersNumber': menuItem.ratersNumber,
-                      'price': menuItem.price,
-                    },
+                    extra: jsonEncode(
+                        menuItem.toJson()), // Serialize the MenuItem to JSON
                   );
                 },
                 child: Card(
