@@ -133,7 +133,7 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${(widget.price * quantity).toStringAsFixed(2)}EGP',
+                '${(widget.price * quantity).toStringAsFixed(2)} EGP',
                 style: const TextStyle(
                   fontSize: 22,
                   color: Colors.orange,
@@ -170,12 +170,25 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
             ],
           ),
           const SizedBox(height: 8),
-          Text(
-            ' ${widget.itemStatus}',
-            style: const TextStyle(
-              fontSize: 16,
-              color: Color.fromARGB(255, 1, 58, 25),
-            ),
+          Row(
+            children: [
+              Icon(
+                widget.itemStatus == 'active'
+                    ? Icons.check_circle
+                    : Icons.warning,
+                color:
+                    widget.itemStatus == 'active' ? Colors.green : Colors.red,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                widget.itemStatus == 'active' ? 'Active' : 'Inactive',
+                style: TextStyle(
+                  fontSize: 16,
+                  color:
+                      widget.itemStatus == 'active' ? Colors.green : Colors.red,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 4),
           Text(
@@ -191,6 +204,7 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
             style: const TextStyle(
               fontSize: 16,
               color: Colors.black,
+              fontStyle: FontStyle.italic,
             ),
           ),
           const SizedBox(height: 20),
@@ -203,7 +217,8 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius:
+                      BorderRadius.circular(50), // Circular border radius
                 ),
               ),
               child: const Text('Place Order'),
