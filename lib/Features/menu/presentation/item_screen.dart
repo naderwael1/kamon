@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kamon/Features/menu/presentation/circular_image.dart';
 import 'package:kamon/Features/menu/presentation/item_screen_clip_path.dart';
+import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
+import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart';
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
 
 class ItemScreen extends StatelessWidget {
@@ -79,6 +81,7 @@ class ItemDetailScreen extends StatelessWidget {
               rating: double.parse(averageRating),
               reviewsCount: ratersNumber,
               price: double.parse(price),
+              itemId: itemId,
             ),
           ],
         ),
@@ -87,12 +90,13 @@ class ItemDetailScreen extends StatelessWidget {
   }
 }
 
-class ItemDetailCard extends StatelessWidget {
+class ItemDetailCard extends StatefulWidget {
   final String mealTime;
   final String itemName;
   final double rating;
   final int reviewsCount;
   final double price;
+  final int itemId;
 
   const ItemDetailCard({
     Key? key,
@@ -101,7 +105,51 @@ class ItemDetailCard extends StatelessWidget {
     required this.rating,
     required this.reviewsCount,
     required this.price,
+    required this.itemId,
   }) : super(key: key);
+
+  @override
+  _ItemDetailCardState createState() => _ItemDetailCardState();
+}
+
+class _ItemDetailCardState extends State<ItemDetailCard> {
+  int quantity = 1;
+
+  void _placeOrder(BuildContext context) async {
+    Order order = Order(
+      customerId: '2',
+      branchId: '2',
+      orderType: 'delivery',
+      orderStatus: 'pending',
+      totalPrice: (widget.price * quantity).toString(),
+      paymentMethod: 'cash',
+      orderItems: [
+        OrderItem(
+            itemId: widget.itemId,
+            quantity: quantity,
+            quotePrice: widget.price),
+      ],
+      additionalDiscount: '0',
+      creditCardNumber: '1234567891234567', // Example card number
+      creditCardExpireMonth: '6',
+      creditCardExpireDay: '17',
+      nameOnCard: 'ismail',
+      tableId: '1',
+      addressId: '1',
+      customerPhoneId: '1',
+    );
+
+    try {
+      String response = await placeOrder(order);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Order placed successfully: $response'),
+      ));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Failed to place order: $e'),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +159,7 @@ class ItemDetailCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            mealTime,
+            widget.mealTime,
             style: const TextStyle(
               fontSize: 16,
               color: Colors.grey,
@@ -122,7 +170,7 @@ class ItemDetailCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                itemName,
+                widget.itemName,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -133,7 +181,7 @@ class ItemDetailCard extends StatelessWidget {
                   const Icon(Icons.star, color: Colors.amber, size: 20),
                   const SizedBox(width: 4),
                   Text(
-                    '$rating',
+                    '${widget.rating}',
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -141,7 +189,7 @@ class ItemDetailCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    '($reviewsCount Reviews)',
+                    '(${widget.reviewsCount} Reviews)',
                     style: const TextStyle(
                       fontSize: 14,
                       color: Colors.grey,
@@ -152,41 +200,62 @@ class ItemDetailCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Row(children: [
-            Text(
-              '\$${price.toStringAsFixed(2)}',
-              style: const TextStyle(
-                fontSize: 22,
-                color: Colors.orange,
-                fontWeight: FontWeight.bold,
+          Row(
+            children: [
+              Text(
+                '\$${(widget.price * quantity).toStringAsFixed(2)}',
+                style: const TextStyle(
+                  fontSize: 22,
+                  color: Colors.orange,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.remove, color: Colors.orange),
-                  onPressed: () {
-                    // Decrease quantity logic
-                  },
-                ),
-                const Text(
-                  '1',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+              const Spacer(),
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove, color: Colors.orange),
+                    onPressed: () {
+                      setState(() {
+                        if (quantity > 1) quantity--;
+                      });
+                    },
                   ),
+                  Text(
+                    '$quantity',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.add, color: Colors.orange),
+                    onPressed: () {
+                      setState(() {
+                        quantity++;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Center(
+            child: ElevatedButton(
+              onPressed: () => _placeOrder(context),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.orange,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.add, color: Colors.orange),
-                  onPressed: () {
-                    // Increase quantity logic
-                  },
-                ),
-              ],
+              ),
+              child: const Text('Place Order'),
             ),
-          ]),
+          ),
         ],
       ),
     );

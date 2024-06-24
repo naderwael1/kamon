@@ -3,6 +3,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:kamon/Features/menu/model/menu_model.dart';
 import 'dart:convert';
 
+import 'package:kamon/constant.dart';
+
 class GetMenu {
   final Map<String, List<double>> branches = {
     'Cairo': [30.0444, 31.2357],
@@ -13,7 +15,7 @@ class GetMenu {
   Future<List<MenuItem>> getMenu() async {
     int branchId = await _getBranchIdBasedOnLocation();
     final response = await http.get(Uri.parse(
-        'http://192.168.10.1:4000/admin/menu/branchMenuFilter/$branchId'));
+        'http://$baseUrl:4000/admin/menu/branchMenuFilter/$branchId'));
 
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
