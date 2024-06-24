@@ -2,9 +2,12 @@ import 'package:go_router/go_router.dart';
 import 'package:kamon/Features/Splash/presentation/views/splash_view.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/home/presentation/views/home_view.dart';
+import 'package:kamon/Features/menu/presentation/item_screen.dart';
 
 abstract class AppRouter {
   static const KHomeView = '/homeView';
+  static const KItemScreen = '/itemScreen';
+
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -17,6 +20,21 @@ abstract class AppRouter {
           branchId: 1,
           branchLocation: '',
         ),
+      ),
+      GoRoute(
+        path: '/menu',
+        builder: (context, state) {
+          final Map<String, dynamic> extra =
+              state.extra as Map<String, dynamic>;
+          final itemId = extra['itemId'] as int;
+          final itemName = extra['itemName'] as String;
+          final itemDescription = extra['itemDescription'] as String;
+          return ItemScreen(
+            itemId: itemId,
+            itemName: itemName,
+            itemDescription: itemDescription,
+          );
+        },
       ),
     ],
   );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:kamon/Features/home/data/seach_view_model.dart';
 
@@ -28,11 +29,23 @@ class SearchResultList extends StatelessWidget {
             itemCount: viewModel.searchedForMenuItems.length,
             itemBuilder: (context, index) {
               final menuItem = viewModel.searchedForMenuItems[index];
-              return Card(
-                child: ListTile(
-                  title: Text(menuItem.itemName),
-                  subtitle: Text(menuItem.itemDescription),
-                  trailing: Text('\$${menuItem.price}'),
+              return GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).push(
+                    '/menu',
+                    extra: {
+                      'itemId': menuItem.itemId,
+                      'itemName': menuItem.itemName,
+                      'itemDescription': menuItem.itemDescription,
+                    },
+                  );
+                },
+                child: Card(
+                  child: ListTile(
+                    title: Text(menuItem.itemName),
+                    subtitle: Text(menuItem.itemDescription),
+                    trailing: Text('\$${menuItem.price}'),
+                  ),
                 ),
               );
             },

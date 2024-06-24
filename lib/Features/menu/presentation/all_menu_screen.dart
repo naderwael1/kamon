@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kamon/Features/menu/model/menu_model.dart';
 import 'package:provider/provider.dart';
 import 'package:kamon/Features/home/data/seach_view_model.dart';
@@ -28,10 +29,22 @@ class _MenuScreenState extends State<MenuScreen> {
                 itemCount: viewModel.allMenuItems.length,
                 itemBuilder: (context, index) {
                   MenuItem menuItem = viewModel.allMenuItems[index];
-                  return ListTile(
-                    title: Text(menuItem.itemName),
-                    subtitle: Text(menuItem.itemDescription),
-                    trailing: Text('\$${menuItem.price}'),
+                  return GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(
+                        '/menu',
+                        extra: {
+                          'itemId': menuItem.itemId,
+                          'itemName': menuItem.itemName,
+                          'itemDescription': menuItem.itemDescription,
+                        },
+                      );
+                    },
+                    child: ListTile(
+                      title: Text(menuItem.itemName),
+                      subtitle: Text(menuItem.itemDescription),
+                      trailing: Text('\$${menuItem.price}'),
+                    ),
                   );
                 },
               );

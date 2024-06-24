@@ -10,15 +10,25 @@ class ItemScreenClipPath extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      color: Colors.grey[300],
+      color: kPrimaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.orange),
-            onPressed: () {
-              // Add your onPressed code here!
-            },
+          Container(
+            height: 30,
+            width: 30,
+            color: Colors.white,
+            child: GestureDetector(
+              onTap: () {
+                // Handle shopping cart button press
+              },
+              child: const Center(
+                child: Icon(
+                  Icons.arrow_back,
+                  color: kPrimaryColor,
+                ),
+              ),
+            ),
           ),
           const Text(
             'Kabeer Food',
@@ -27,11 +37,21 @@ class ItemScreenClipPath extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.favorite_border, color: Colors.orange),
-            onPressed: () {
-              // Add your onPressed code here!
-            },
+          Container(
+            height: 30,
+            width: 30,
+            color: Colors.white,
+            child: GestureDetector(
+              onTap: () {
+                // Handle shopping cart button press
+              },
+              child: const Center(
+                child: Icon(
+                  Icons.favorite_border,
+                  color: kPrimaryColor,
+                ),
+              ),
+            ),
           ),
         ],
       ),
