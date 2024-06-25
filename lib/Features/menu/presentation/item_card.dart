@@ -143,7 +143,7 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 211, 185, 119),
+                  color: const Color.fromARGB(255, 211, 185, 119),
                   borderRadius:
                       BorderRadius.circular(100), // Circular border radius
                 ),
@@ -217,13 +217,47 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
               ),
             ],
           ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              if (widget.vegetarian)
+                const Row(
+                  children: [
+                    Icon(Icons.eco, color: Colors.green, size: 20),
+                    SizedBox(width: 4),
+                    Text(
+                      'Vegetarian',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                  ],
+                ),
+              if (widget.healthy)
+                const Row(
+                  children: [
+                    Icon(Icons.favorite, color: Colors.red, size: 20),
+                    SizedBox(width: 4),
+                    Text(
+                      'Healthy',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+            ],
+          ),
           const SizedBox(height: 16),
           Text(
             widget.itemDescription,
             style: GoogleFonts.lato(
               textStyle: Theme.of(context).textTheme.displayLarge,
               fontSize: 25,
-              color: Color.fromARGB(255, 85, 1, 1),
+              color: const Color.fromARGB(255, 85, 1, 1),
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),
@@ -275,7 +309,7 @@ class CircularIconButton extends StatelessWidget {
         onPressed: onPressed,
         iconSize: 24.0,
         padding: EdgeInsets.zero,
-        constraints: BoxConstraints(),
+        constraints: const BoxConstraints(),
       ),
     );
   }

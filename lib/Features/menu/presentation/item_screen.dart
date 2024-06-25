@@ -9,9 +9,11 @@ class ItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ItemDetailScreen(
-        menuItem: menuItem,
+    return SafeArea(
+      child: Scaffold(
+        body: ItemDetailScreen(
+          menuItem: menuItem,
+        ),
       ),
     );
   }

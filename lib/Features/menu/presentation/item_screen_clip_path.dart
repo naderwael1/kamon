@@ -11,47 +11,77 @@ class ItemScreenClipPath extends StatelessWidget {
     return Container(
       height: 230,
       color: kPrimaryColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Container(
-              height: 30,
-              width: 30,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () {
-                  // Handle shopping cart button press
-                },
-                child: const Center(
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: kPrimaryColor,
+          const SizedBox(height: 40), // Space from the top
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      // Handle back button press
+                    },
+                    child: const Center(
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: kPrimaryColor,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              const SizedBox(width: 8), // Add some spacing between icons
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      // Handle favorite button press
+                    },
+                    child: const Center(
+                      child: Icon(
+                        Icons.favorite_border,
+                        color: kPrimaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8), // Add some spacing between icons
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      // Handle chart button press
+                    },
+                    child: const Center(
+                      child: Icon(
+                        Icons.shopping_cart_outlined,
+                        color: kPrimaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          Image.asset('assets/images/kamonText.png'),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Container(
-              height: 30,
-              width: 30,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () {
-                  // Handle shopping cart button press
-                },
-                child: const Center(
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: kPrimaryColor,
-                  ),
-                ),
-              ),
-            ),
+          const SizedBox(
+              height: 16), // Space between the icons row and the image
+          Center(
+            child: Image.asset('assets/images/kamonText.png'),
           ),
         ],
       ),
