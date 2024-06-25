@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kamon/constant.dart';
+import 'package:kamon/Features/ordars/data/cart_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:kamon/core/utils/app_router.dart';
-
-import 'Features/Splash/presentation/views/splash_view.dart'; // Correct import path
+import 'package:kamon/constant.dart';
 
 void main() {
-  runApp(const Kamon());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+      ],
+      child: const Kamon(),
+    ),
+  );
 }
 
 class Kamon extends StatelessWidget {
@@ -18,10 +24,9 @@ class Kamon extends StatelessWidget {
       routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          brightness: Brightness.light, // Set your default theme here
-          scaffoldBackgroundColor: kSecondaryColor
-          // Add other theme configurations if needed
-          ),
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: kSecondaryColor,
+      ),
     );
   }
 }

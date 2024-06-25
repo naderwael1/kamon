@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kamon/Features/menu/presentation/item_screen.dart';
+import 'package:kamon/Features/menu/model/menu_model.dart';
 import 'package:provider/provider.dart';
 import 'package:kamon/Features/home/data/seach_view_model.dart';
 
@@ -34,10 +34,10 @@ class SearchResultList extends StatelessWidget {
               final menuItem = viewModel.searchedForMenuItems[index];
               return GestureDetector(
                 onTap: () {
+                  final String menuItemJson = jsonEncode(menuItem.toJson());
                   GoRouter.of(context).push(
                     '/menu',
-                    extra: jsonEncode(
-                        menuItem.toJson()), // Serialize the MenuItem to JSON
+                    extra: menuItemJson, // Serialize the MenuItem to JSON
                   );
                 },
                 child: Card(

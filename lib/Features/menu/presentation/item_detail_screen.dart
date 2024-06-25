@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:kamon/Features/menu/model/menu_model.dart';
 import 'package:kamon/Features/menu/presentation/circular_image.dart';
 import 'package:kamon/Features/menu/presentation/item_card.dart';
 import 'package:kamon/Features/menu/presentation/item_screen_clip_path.dart';
-import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
-import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart'; // Import your MenuItem model
 import 'package:kamon/core/shared_widget/base_clip_path.dart';
+import 'package:kamon/Features/ordars/data/cart_provider.dart';
+import 'package:kamon/core/utils/app_router.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   final MenuItem menuItem;
@@ -45,6 +47,29 @@ class ItemDetailScreen extends StatelessWidget {
                     healthy: menuItem.healthy,
                     itemStatus: menuItem.itemStatus,
                     preparationTime: menuItem.preparationTime.minutes,
+                  ),
+                ),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Provider.of<CartProvider>(context, listen: false)
+                          .addItem(menuItem);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Item added to cart'),
+                      ));
+                      GoRouter.of(context).push(AppRouter.KCartScreen);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.orange,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(50), // Circular border radius
+                      ),
+                    ),
+                    child: const Text('Add to Cart and Go to Cart'),
                   ),
                 ),
               ],
