@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:kamon/Features/ordars/data/cart_provider.dart';
+import 'package:kamon/Features/menu/model/menu_model.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kamon/core/utils/app_router.dart';
 
 class ItemDetailCard extends StatefulWidget {
   final String mealTime;
@@ -16,6 +21,7 @@ class ItemDetailCard extends StatefulWidget {
   final bool healthy;
   final String itemStatus;
   final int preparationTime;
+  final MenuItem menuItem;
 
   const ItemDetailCard({
     Key? key,
@@ -30,6 +36,7 @@ class ItemDetailCard extends StatefulWidget {
     required this.healthy,
     required this.itemStatus,
     required this.preparationTime,
+    required this.menuItem,
   }) : super(key: key);
 
   @override
@@ -40,14 +47,11 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
   int quantity = 1;
 
   void _placeOrder(BuildContext context) async {
-    // Retrieve the branchId from shared preferences
     final prefs = await SharedPreferences.getInstance();
     int? branchId = prefs.getInt('branchId');
 
     if (branchId == null) {
-      // ignore: prefer_const_constructors
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        // ignore: prefer_const_constructors
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Failed to get branch information'),
       ));
       return;
@@ -55,7 +59,7 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
 
     Order order = Order(
       customerId: '2',
-      branchId: branchId.toString(), // Use the retrieved branchId
+      branchId: branchId.toString(),
       orderType: 'delivery',
       orderStatus: 'pending',
       totalPrice: (widget.price * quantity).toString(),
@@ -68,7 +72,7 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
         ),
       ],
       additionalDiscount: '0',
-      creditCardNumber: '1234567891234567', // Example card number
+      creditCardNumber: '1234567891234567',
       creditCardExpireMonth: '6',
       creditCardExpireDay: '17',
       nameOnCard: 'ismail',
@@ -159,39 +163,35 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
               Container(
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 211, 185, 119),
-                  borderRadius:
-                      BorderRadius.circular(100), // Circular border radius
+                  borderRadius: BorderRadius.circular(100),
                 ),
-                child: SizedBox(
-                  width: 120,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CircularIconButton(
-                        icon: Icons.remove,
-                        onPressed: () {
-                          setState(() {
-                            if (quantity > 1) quantity--;
-                          });
-                        },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircularIconButton(
+                      icon: Icons.remove,
+                      onPressed: () {
+                        setState(() {
+                          if (quantity > 1) quantity--;
+                        });
+                      },
+                    ),
+                    Text(
+                      '$quantity',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text(
-                        '$quantity',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      CircularIconButton(
-                        icon: Icons.add,
-                        onPressed: () {
-                          setState(() {
-                            quantity++;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+                    ),
+                    CircularIconButton(
+                      icon: Icons.add,
+                      onPressed: () {
+                        setState(() {
+                          quantity++;
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -279,19 +279,45 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
           ),
           const SizedBox(height: 20),
           Center(
-            child: ElevatedButton(
-              onPressed: () => _placeOrder(context),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.orange,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(50), // Circular border radius
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Provider.of<CartProvider>(context, listen: false)
+                        .addItem(widget.menuItem, quantity);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Item added to cart'),
+                    ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.green,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  child: const Text('Add to Cart'),
                 ),
-              ),
-              child: const Text('Place Order'),
+                const SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouter.KCartScreen);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  child: const Text('Go to Cart'),
+                ),
+              ],
             ),
           ),
         ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kamon/Features/ordars/data/cart_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart';
+import 'package:provider/provider.dart';
+import 'package:kamon/Features/ordars/data/cart_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartScreen extends StatelessWidget {
@@ -21,11 +21,12 @@ class CartScreen extends StatelessWidget {
       return;
     }
 
-    List<OrderItem> orderItems = cart.items.map((menuItem) {
+    List<OrderItem> orderItems = cart.items.map((cartItem) {
+      final menuItem = cartItem.menuItem;
       return OrderItem(
         itemId: menuItem.itemId,
-        quantity: cart.itemQuantities[menuItem.itemId]!,
-        quotePrice: double.parse(menuItem.price),
+        quantity: cartItem.quantity,
+        quotePrice: double.tryParse(menuItem.price) ?? 0.0,
       );
     }).toList();
 
@@ -69,15 +70,15 @@ class CartScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: cart.items.length,
         itemBuilder: (context, index) {
-          final menuItem = cart.items[index];
+          final cartItem = cart.items[index];
           return ListTile(
-            title: Text(menuItem.itemName),
-            subtitle: Text(
-                '${cart.itemQuantities[menuItem.itemId]} x ${menuItem.price} EGP'),
+            title: Text(cartItem.menuItem.itemName),
+            subtitle:
+                Text('${cartItem.quantity} x ${cartItem.menuItem.price} EGP'),
             trailing: IconButton(
               icon: const Icon(Icons.remove_circle),
               onPressed: () {
-                cart.removeItem(menuItem);
+                cart.removeItem(cartItem.menuItem);
               },
             ),
           );

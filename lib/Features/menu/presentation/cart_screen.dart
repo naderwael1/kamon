@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:kamon/Features/ordars/data/cart_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart';
+import 'package:provider/provider.dart';
+import 'package:kamon/Features/ordars/data/cart_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  final CartProvider cart;
+
+  const CartScreen({Key? key, required this.cart}) : super(key: key);
 
   Future<void> _placeOrder(BuildContext context) async {
-    final cartProvider = Provider.of<CartProvider>(context, listen: false);
     final prefs = await SharedPreferences.getInstance();
     int? branchId = prefs.getInt('branchId');
 
@@ -20,11 +21,12 @@ class CartScreen extends StatelessWidget {
       return;
     }
 
-    List<OrderItem> orderItems = cartProvider.items.map((menuItem) {
+    List<OrderItem> orderItems = cart.items.map((cartItem) {
+      final menuItem = cartItem.menuItem;
       return OrderItem(
         itemId: menuItem.itemId,
-        quantity: cartProvider.itemQuantities[menuItem.itemId]!,
-        quotePrice: double.parse(menuItem.price),
+        quantity: cartItem.quantity,
+        quotePrice: double.tryParse(menuItem.price) ?? 0.0,
       );
     }).toList();
 
@@ -33,7 +35,7 @@ class CartScreen extends StatelessWidget {
       branchId: branchId.toString(),
       orderType: 'delivery',
       orderStatus: 'pending',
-      totalPrice: cartProvider.totalPrice.toString(),
+      totalPrice: cart.totalPrice.toString(),
       paymentMethod: 'cash',
       orderItems: orderItems,
       additionalDiscount: '0',
@@ -51,7 +53,7 @@ class CartScreen extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Order placed successfully: $response'),
       ));
-      cartProvider.clearCart();
+      cart.clearCart();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Failed to place order: $e'),
@@ -61,24 +63,22 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartProvider>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Cart'),
       ),
       body: ListView.builder(
-        itemCount: cartProvider.items.length,
+        itemCount: cart.items.length,
         itemBuilder: (context, index) {
-          final menuItem = cartProvider.items[index];
+          final cartItem = cart.items[index];
           return ListTile(
-            title: Text(menuItem.itemName),
-            subtitle: Text(
-                '${cartProvider.itemQuantities[menuItem.itemId]} x ${menuItem.price} EGP'),
+            title: Text(cartItem.menuItem.itemName),
+            subtitle:
+                Text('${cartItem.quantity} x ${cartItem.menuItem.price} EGP'),
             trailing: IconButton(
               icon: const Icon(Icons.remove_circle),
               onPressed: () {
-                cartProvider.removeItem(menuItem);
+                cart.removeItem(cartItem.menuItem);
               },
             ),
           );
@@ -96,8 +96,8 @@ class CartScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
             ),
           ),
-          child: Text(
-              'Place Order (${cartProvider.totalPrice.toStringAsFixed(2)} EGP)'),
+          child:
+              Text('Place Order (${cart.totalPrice.toStringAsFixed(2)} EGP)'),
         ),
       ),
     );
