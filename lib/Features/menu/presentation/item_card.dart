@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ItemDetailCard extends StatefulWidget {
   final String mealTime;
@@ -39,18 +40,32 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
   int quantity = 1;
 
   void _placeOrder(BuildContext context) async {
+    // Retrieve the branchId from shared preferences
+    final prefs = await SharedPreferences.getInstance();
+    int? branchId = prefs.getInt('branchId');
+
+    if (branchId == null) {
+      // ignore: prefer_const_constructors
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        // ignore: prefer_const_constructors
+        content: Text('Failed to get branch information'),
+      ));
+      return;
+    }
+
     Order order = Order(
       customerId: '2',
-      branchId: '2',
+      branchId: branchId.toString(), // Use the retrieved branchId
       orderType: 'delivery',
       orderStatus: 'pending',
       totalPrice: (widget.price * quantity).toString(),
       paymentMethod: 'cash',
       orderItems: [
         OrderItem(
-            itemId: widget.itemId,
-            quantity: quantity,
-            quotePrice: widget.price),
+          itemId: widget.itemId,
+          quantity: quantity,
+          quotePrice: widget.price,
+        ),
       ],
       additionalDiscount: '0',
       creditCardNumber: '1234567891234567', // Example card number

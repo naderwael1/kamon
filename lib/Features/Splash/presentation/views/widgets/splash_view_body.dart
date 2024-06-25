@@ -2,6 +2,7 @@ import 'dart:async'; // Import dart:async for Future
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kamon/Features/app_layout/screens/app_layout_screen.dart';
 import 'package:kamon/Features/home/data/get_location.dart';
 import 'package:kamon/core/utils/app_router.dart';
@@ -65,6 +66,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
         if (minDistance <= deliveryRadius) {
           branchLocation = closestBranch;
           branchId = branchIds[closestBranch]!;
+          saveBranchId(branchId); // Save branchId to shared preferences
         } else {
           branchLocation = 'Out of delivery area';
         }
@@ -76,6 +78,16 @@ class _SplashViewbodyState extends State<SplashViewbody>
     } finally {
       navigateToAppLayout();
     }
+  }
+
+  Future<void> saveBranchId(int id) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('branchId', id);
+  }
+
+  Future<int?> getBranchId() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt('branchId');
   }
 
   void navigateToAppLayout() {
