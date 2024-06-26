@@ -1,69 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
-class CustomCreditCard extends StatefulWidget {
+class CustomCreditCardWidget extends StatefulWidget {
+  final String cardNumber;
+  final String expiryDate;
+  final String cardHolderName;
+  final String cvvCode;
+  final bool showBackView;
   final Function(CreditCardModel) onCreditCardModelChange;
 
-  CustomCreditCard(
-      {required this.onCreditCardModelChange,
-      required String cardNumber,
-      required String expiryDate,
-      required String cardHolderName,
-      required String cvvCode,
-      required bool isCvvFocused});
+  const CustomCreditCardWidget({
+    Key? key,
+    required this.cardNumber,
+    required this.expiryDate,
+    required this.cardHolderName,
+    required this.cvvCode,
+    required this.showBackView,
+    required this.onCreditCardModelChange,
+  }) : super(key: key);
 
   @override
-  _CustomCreditCardState createState() => _CustomCreditCardState();
+  _CustomCreditCardWidgetState createState() => _CustomCreditCardWidgetState();
 }
 
-class _CustomCreditCardState extends State<CustomCreditCard> {
-  String cardNumber = '';
-  String expiryDate = '';
-  String cardHolderName = '';
-  String cvvCode = '';
-  bool showBackView = false;
-
+class _CustomCreditCardWidgetState extends State<CustomCreditCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CreditCardWidget(
-          cardNumber: cardNumber,
-          expiryDate: expiryDate,
-          cardHolderName: cardHolderName,
-          cvvCode: cvvCode,
-          showBackView: showBackView,
-          obscureCardNumber: false,
-          obscureCardCvv: true,
-          cardBgColor: const Color.fromARGB(255, 7, 105, 150),
-          labelCardHolder: 'Card Holder',
-          textStyle: const TextStyle(
-            color: Colors.white,
-          ),
-          height: 200,
-          width: MediaQuery.of(context).size.width,
-          animationDuration: const Duration(milliseconds: 1000),
-          onCreditCardWidgetChange: (CreditCardBrand) {},
+          cardNumber: widget.cardNumber,
+          expiryDate: widget.expiryDate,
+          cardHolderName: widget.cardHolderName,
+          cvvCode: widget.cvvCode,
+          showBackView: widget.showBackView,
+          isChipVisible: true,
+          onCreditCardWidgetChange: (value) {},
         ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: CreditCardForm(
-            formKey: GlobalKey<FormState>(),
-            cardNumber: cardNumber,
-            expiryDate: expiryDate,
-            cardHolderName: cardHolderName,
-            cvvCode: cvvCode,
-            onCreditCardModelChange: (CreditCardModel) {
-              {
-                cardNumber = CreditCardModel.cardNumber;
-                expiryDate = CreditCardModel.expiryDate;
-                cardHolderName = CreditCardModel.cardHolderName;
-                cvvCode = cvvCode;
-                showBackView = CreditCardModel.isCvvFocused;
-                setState(() {});
-              }
-            },
-          ),
+        CreditCardForm(
+          cardNumber: widget.cardNumber,
+          expiryDate: widget.expiryDate,
+          cardHolderName: widget.cardHolderName,
+          cvvCode: widget.cvvCode,
+          onCreditCardModelChange: widget.onCreditCardModelChange,
+          formKey: GlobalKey<FormState>(),
         ),
       ],
     );

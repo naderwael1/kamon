@@ -9,13 +9,6 @@ class PaymentMethodScreen extends StatefulWidget {
 
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   int _selectedIndex = 0;
-  String cardNumber = '';
-  String expiryDate = '';
-  String cardHolderName = '';
-  String cvvCode = '';
-  bool isCvvFocused = false;
-  bool showBackView = false;
-  final GlobalKey<FormState> formKey = GlobalKey();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,33 +43,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 ),
               ],
             ),
-            if (_selectedIndex == 1)
-              CreditCardWidget(
-                cardNumber: cardNumber,
-                expiryDate: expiryDate,
-                cardHolderName: cardHolderName,
-                cvvCode: cvvCode,
-                showBackView: showBackView,
-                isChipVisible: true,
-                onCreditCardWidgetChange: (value) {},
-              ),
-            if (_selectedIndex == 1)
-              CreditCardForm(
-                cardNumber: cardNumber,
-                expiryDate: expiryDate,
-                cardHolderName: cardHolderName,
-                cvvCode: cvvCode,
-                onCreditCardModelChange: (creditCardModel) {
-                  setState(() {
-                    cardHolderName = creditCardModel.cardHolderName;
-                    expiryDate = creditCardModel.expiryDate;
-                    cardNumber = creditCardModel.cardNumber;
-                    cvvCode = creditCardModel.cvvCode;
-                    showBackView = creditCardModel.isCvvFocused;
-                  });
-                },
-                formKey: formKey,
-              ),
+            if (_selectedIndex == 1) const CustomCreditCard(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
@@ -87,11 +54,6 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     print('Cash selected');
                   } else {
                     // Card selected
-                    print('Card selected with details:');
-                    print('Card Number: $cardNumber');
-                    print('Expiry Date: $expiryDate');
-                    print('Card Holder Name: $cardHolderName');
-                    print('CVV Code: $cvvCode');
                   }
                 },
                 child: const Text('Confirm Payment Method'),
@@ -100,6 +62,56 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomCreditCard extends StatefulWidget {
+  const CustomCreditCard({super.key});
+
+  @override
+  State<CustomCreditCard> createState() => _CustomCreditCardState();
+}
+
+class _CustomCreditCardState extends State<CustomCreditCard> {
+  String cardNumber = '';
+  String expiryDate = '';
+  String cardHolderName = '';
+  String cvvCode = '';
+  bool showBackView = false;
+  final GlobalKey<FormState> formKey = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CreditCardWidget(
+          cardNumber: cardNumber,
+          expiryDate: expiryDate,
+          cardHolderName: cardHolderName,
+          cvvCode: cvvCode,
+          showBackView: showBackView,
+          isChipVisible: true,
+          onCreditCardWidgetChange: (value) {},
+        ),
+        CreditCardForm(
+          cardNumber: cardNumber,
+          expiryDate: expiryDate,
+          cardHolderName: cardHolderName,
+          cvvCode: cvvCode,
+          onCreditCardModelChange: (creditCardModel) {
+            {
+              cardHolderName = creditCardModel.cardHolderName;
+              expiryDate = creditCardModel.expiryDate;
+              cardNumber = creditCardModel.cardNumber;
+              cvvCode = creditCardModel.cvvCode;
+              showBackView = creditCardModel.isCvvFocused;
+              setState(() {});
+            }
+          },
+          formKey: formKey,
+        ),
+      ],
     );
   }
 }
