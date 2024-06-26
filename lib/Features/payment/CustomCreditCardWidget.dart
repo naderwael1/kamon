@@ -23,20 +23,6 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
   String cvvCode = '';
   bool showBackView = false;
 
-  final FocusNode cardNumberNode = FocusNode();
-  final FocusNode expiryDateNode = FocusNode();
-  final FocusNode cardHolderNode = FocusNode();
-  final FocusNode cvvNode = FocusNode();
-
-  @override
-  void dispose() {
-    cardNumberNode.dispose();
-    expiryDateNode.dispose();
-    cardHolderNode.dispose();
-    cvvNode.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,7 +33,7 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
           cardHolderName: cardHolderName,
           cvvCode: cvvCode,
           showBackView: showBackView,
-          obscureCardNumber: true,
+          obscureCardNumber: false,
           obscureCardCvv: true,
           cardBgColor: const Color.fromARGB(255, 7, 105, 150),
           labelCardHolder: 'Card Holder',
@@ -76,7 +62,6 @@ class _CustomCreditCardState extends State<CustomCreditCard> {
                 showBackView = CreditCardModel.isCvvFocused;
                 setState(() {});
               }
-              ;
             },
           ),
         ),

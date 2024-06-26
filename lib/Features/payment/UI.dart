@@ -14,6 +14,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
+  bool showBackView = false;
+  final GlobalKey<FormState> formKey = GlobalKey();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -49,22 +51,27 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               ],
             ),
             if (_selectedIndex == 1)
-              CustomCreditCard(
+              CreditCardWidget(
+                  cardNumber: cardNumber,
+                  expiryDate: expiryDate,
+                  cardHolderName: cardHolderName,
+                  cvvCode: cvvCode,
+                  showBackView: showBackView,
+                  onCreditCardWidgetChange: (value) {}),
+            CreditCardForm(
                 cardNumber: cardNumber,
                 expiryDate: expiryDate,
                 cardHolderName: cardHolderName,
                 cvvCode: cvvCode,
-                isCvvFocused: isCvvFocused,
-                onCreditCardModelChange: (CreditCardModel data) {
-                  setState(() {
-                    cardNumber = data.cardNumber;
-                    expiryDate = data.expiryDate;
-                    cardHolderName = data.cardHolderName;
-                    cvvCode = data.cvvCode;
-                    isCvvFocused = data.isCvvFocused;
-                  });
+                onCreditCardModelChange: (craditCardModel) {
+                  cardHolderName = craditCardModel.cardHolderName;
+                  expiryDate = craditCardModel.expiryDate;
+                  cardNumber = craditCardModel.cardNumber;
+                  cvvCode = craditCardModel.cvvCode;
+                  showBackView = craditCardModel.isCvvFocused = false;
+                  setState(() {});
                 },
-              ),
+                formKey: formKey),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
