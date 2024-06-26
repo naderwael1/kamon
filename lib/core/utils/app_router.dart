@@ -20,7 +20,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => ThankYouView(),
+        builder: (context, state) => SplashView(),
       ),
       GoRoute(
         path: KHomeView,
