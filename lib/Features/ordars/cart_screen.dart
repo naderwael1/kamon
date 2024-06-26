@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kamon/Features/ordars/cart_clip.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/data/post_non_virual.dart';
 import 'package:kamon/Features/ordars/non_virtual_order/model/non_virual_model.dart';
 import 'package:kamon/core/network/dio_helper_pay.dart';
+import 'package:kamon/core/shared_widget/base_clip_path.dart';
 import 'package:provider/provider.dart';
 import 'package:kamon/Features/ordars/data/cart_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,11 +91,12 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Your Cart'),
-      ),
       body: Column(
         children: [
+          ClipPath(
+            clipper: BaseClipper(),
+            child: const CartClip(),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: widget.cart.items.length,
