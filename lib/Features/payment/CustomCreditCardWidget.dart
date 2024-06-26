@@ -1,49 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
-class CustomCreditCardWidget extends StatefulWidget {
-  final String cardNumber;
-  final String expiryDate;
-  final String cardHolderName;
-  final String cvvCode;
-  final bool showBackView;
-  final Function(CreditCardModel) onCreditCardModelChange;
-
-  const CustomCreditCardWidget({
-    Key? key,
-    required this.cardNumber,
-    required this.expiryDate,
-    required this.cardHolderName,
-    required this.cvvCode,
-    required this.showBackView,
-    required this.onCreditCardModelChange,
-  }) : super(key: key);
+class CustomCreditCard extends StatefulWidget {
+  final GlobalKey<FormState> formKey;
+  final AutovalidateMode autovalidateMode;
+  const CustomCreditCard(
+      {super.key, required this.formKey, required this.autovalidateMode});
 
   @override
-  _CustomCreditCardWidgetState createState() => _CustomCreditCardWidgetState();
+  State<CustomCreditCard> createState() => _CustomCreditCardState();
 }
 
-class _CustomCreditCardWidgetState extends State<CustomCreditCardWidget> {
+class _CustomCreditCardState extends State<CustomCreditCard> {
+  String cardNumber = '';
+  String expiryDate = '';
+  String cardHolderName = '';
+  String cvvCode = '';
+  bool showBackView = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CreditCardWidget(
-          cardNumber: widget.cardNumber,
-          expiryDate: widget.expiryDate,
-          cardHolderName: widget.cardHolderName,
-          cvvCode: widget.cvvCode,
-          showBackView: widget.showBackView,
+          cardNumber: cardNumber,
+          expiryDate: expiryDate,
+          cardHolderName: cardHolderName,
+          cvvCode: cvvCode,
+          showBackView: showBackView,
           isChipVisible: true,
+          isHolderNameVisible: true,
           onCreditCardWidgetChange: (value) {},
         ),
         CreditCardForm(
-          cardNumber: widget.cardNumber,
-          expiryDate: widget.expiryDate,
-          cardHolderName: widget.cardHolderName,
-          cvvCode: widget.cvvCode,
-          onCreditCardModelChange: widget.onCreditCardModelChange,
-          formKey: GlobalKey<FormState>(),
+          autovalidateMode: widget.autovalidateMode,
+          cardNumber: cardNumber,
+          expiryDate: expiryDate,
+          cardHolderName: cardHolderName,
+          cvvCode: cvvCode,
+          onCreditCardModelChange: (creditCardModel) {
+            setState(() {
+              cardHolderName = creditCardModel.cardHolderName;
+              expiryDate = creditCardModel.expiryDate;
+              cardNumber = creditCardModel.cardNumber;
+              cvvCode = creditCardModel.cvvCode;
+              showBackView = creditCardModel.isCvvFocused;
+            });
+          },
+          formKey: widget.formKey,
         ),
       ],
     );

@@ -8,6 +8,7 @@ import 'package:kamon/Features/menu/presentation/item_screen.dart';
 import 'package:kamon/Features/ordars/cart_screen.dart';
 import 'package:kamon/Features/ordars/data/cart_provider.dart';
 import 'package:kamon/Features/payment/UI.dart';
+import 'package:kamon/Features/payment/thank_you_view.dart';
 import 'package:provider/provider.dart';
 
 abstract class AppRouter {
@@ -19,7 +20,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => PaymentMethodScreen(),
+        builder: (context, state) => ThankYouView(),
       ),
       GoRoute(
         path: KHomeView,
