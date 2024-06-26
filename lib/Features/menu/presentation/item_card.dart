@@ -312,7 +312,7 @@ class _ItemDetailCardState extends State<ItemDetailCard> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 32, vertical: 16),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(13),
                     ),
                   ),
                   child: const Text('Go to Cart'),
