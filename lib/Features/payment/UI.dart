@@ -52,26 +52,31 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
             ),
             if (_selectedIndex == 1)
               CreditCardWidget(
-                  cardNumber: cardNumber,
-                  expiryDate: expiryDate,
-                  cardHolderName: cardHolderName,
-                  cvvCode: cvvCode,
-                  showBackView: showBackView,
-                  onCreditCardWidgetChange: (value) {}),
-            CreditCardForm(
                 cardNumber: cardNumber,
                 expiryDate: expiryDate,
                 cardHolderName: cardHolderName,
                 cvvCode: cvvCode,
-                onCreditCardModelChange: (craditCardModel) {
-                  cardHolderName = craditCardModel.cardHolderName;
-                  expiryDate = craditCardModel.expiryDate;
-                  cardNumber = craditCardModel.cardNumber;
-                  cvvCode = craditCardModel.cvvCode;
-                  showBackView = craditCardModel.isCvvFocused = false;
-                  setState(() {});
+                showBackView: showBackView,
+                isChipVisible: true,
+                onCreditCardWidgetChange: (value) {},
+              ),
+            if (_selectedIndex == 1)
+              CreditCardForm(
+                cardNumber: cardNumber,
+                expiryDate: expiryDate,
+                cardHolderName: cardHolderName,
+                cvvCode: cvvCode,
+                onCreditCardModelChange: (creditCardModel) {
+                  setState(() {
+                    cardHolderName = creditCardModel.cardHolderName;
+                    expiryDate = creditCardModel.expiryDate;
+                    cardNumber = creditCardModel.cardNumber;
+                    cvvCode = creditCardModel.cvvCode;
+                    showBackView = creditCardModel.isCvvFocused;
+                  });
                 },
-                formKey: formKey),
+                formKey: formKey,
+              ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
