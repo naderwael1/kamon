@@ -36,24 +36,30 @@ class Order {
   });
 
   Map<String, dynamic> toJson() {
-    return {
+    final Map<String, dynamic> data = {
       'customerId': customerId,
       'branchId': branchId,
       'orderType': orderType,
       'orderStatus': orderStatus,
       'totalPrice': double.parse(totalPrice),
       'paymentMethod': paymentMethod,
-      'orderItems':
-          jsonEncode(orderItems.map((item) => item.toJson()).toList()),
+      'orderItems': orderItems.map((item) => item.toJson()).toList(),
       'additionalDiscount': additionalDiscount,
-      'creditCardNumber': creditCardNumber,
-      'creditCardExpireMonth': creditCardExpireMonth,
-      'creditCardExpireDay': creditCardExpireDay,
-      'nameOnCard': nameOnCard,
       'tableId': tableId,
       'addressId': addressId,
       'customerPhoneId': customerPhoneId,
     };
+
+    if (paymentMethod == 'card') {
+      data.addAll({
+        'creditCardNumber': creditCardNumber,
+        'creditCardExpireMonth': creditCardExpireMonth,
+        'creditCardExpireDay': creditCardExpireDay,
+        'nameOnCard': nameOnCard,
+      });
+    }
+
+    return data;
   }
 }
 
@@ -70,9 +76,9 @@ class OrderItem {
 
   Map<String, dynamic> toJson() {
     return {
-      'item_id': itemId,
+      'itemId': itemId,
       'quantity': quantity,
-      'quote_price': quotePrice,
+      'quotePrice': quotePrice,
     };
   }
 }
